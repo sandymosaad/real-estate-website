@@ -1,4 +1,5 @@
 import { Bath, BedDouble, Layers3, MapPin, Ruler } from "lucide-react";
+import { LeadForm } from "@/components/forms/LeadForm";
 import type { Apartment } from "@/models/Apartment";
 import { formatArea, formatPrice } from "@/lib/format";
 import { Section } from "@/components/ui/Section";
@@ -73,6 +74,16 @@ export function ApartmentDetail({ apartment, similarApartments }: { apartment: A
         />)}
         </div>
       </Section>}
+      <Section>
+        <div className="mx-auto max-w-2xl">
+          <LeadForm
+            title="عايز تعاين الشقة دي؟"
+            defaultInterestType="شقة"
+            relatedItemType="apartment"
+            relatedItemSlug={apartment.slug}
+          />
+        </div>
+      </Section>
     </>
   );
 }

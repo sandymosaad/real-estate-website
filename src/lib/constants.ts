@@ -23,6 +23,13 @@ export const UNION_STAGES = ["تجميع شركاء", "شراء الأرض", "ت
 export type UnionStage = (typeof UNION_STAGES)[number];
 export const EMPTY_RESULTS_MESSAGE = "مفيش نتائج مطابقة دلوقتي. جرّب تغيّر الفلاتر.";
 export const WHATSAPP_DEFAULT_NUMBER = "201000000000";
+export const LEAD_RATE_LIMIT_REQUESTS = 5;
+export const LEAD_RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+export const LEAD_SUCCESS_MESSAGE = "وصلنا طلبك، وهنكلمك قريبًا إن شاء الله.";
+export const LEAD_ERROR_MESSAGE = "حصلت مشكلة مؤقتة. جرّب تبعت الطلب تاني.";
+export const LEAD_RATE_LIMIT_MESSAGE = "وصلت للحد المؤقت من الطلبات. جرّب تاني بعد شوية.";
+export const LEAD_INTEREST_TYPES = ["شقة", "اتحاد ملاك", "استفسار عام"] as const;
+export type LeadInterestType = (typeof LEAD_INTEREST_TYPES)[number];
 
 export function isDistrict(value: string | undefined): value is District {
   return Boolean(value && DISTRICTS.includes(value as District));

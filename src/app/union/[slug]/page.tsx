@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { MapPin, Ruler } from "lucide-react";
 import { notFound } from "next/navigation";
+import { LeadForm } from "@/components/forms/LeadForm";
 import { WhatsAppButton } from "@/components/services/WhatsAppButton";
 import { Section } from "@/components/ui/Section";
 import { formatArea, formatPrice } from "@/lib/format";
@@ -91,6 +92,14 @@ export default async function UnionProjectDetailsPage({ params }: PageProps) {
 
         <div className="mt-8">
           <WhatsAppButton message={message} label="احجز مقعدك" />
+        </div>
+        <div className="mt-10">
+          <LeadForm
+            title="احجز مقعدك"
+            defaultInterestType="اتحاد ملاك"
+            relatedItemType="unionProject"
+            relatedItemSlug={project.slug}
+          />
         </div>
       </div>
     </Section>

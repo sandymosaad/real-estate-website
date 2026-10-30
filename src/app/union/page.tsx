@@ -1,5 +1,6 @@
 import { UnionProjectCard } from "@/components/services/UnionProjectCard";
 import { UnionExplanation } from "@/components/services/UnionExplanation";
+import { LeadForm } from "@/components/forms/LeadForm";
 import { Section } from "@/components/ui/Section";
 import { getUnionProjects } from "@/lib/data/union-projects";
 import type { UnionProject } from "@/models/UnionProject";
@@ -19,6 +20,15 @@ export default async function UnionPage() {
           <p className="rounded-xl border border-border p-8 text-center text-muted">
             حصلت مشكلة مؤقتة في تحميل المشاريع. جرّب تاني بعد شوية.
           </p>
+        </Section>
+        <Section>
+          <div className="mx-auto max-w-2xl">
+            <LeadForm
+              title="مهتم باتحاد ملاك؟"
+              defaultInterestType="اتحاد ملاك"
+              relatedItemType="unionProject"
+            />
+          </div>
         </Section>
       </>
     );
