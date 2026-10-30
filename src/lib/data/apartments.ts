@@ -28,18 +28,33 @@ function buildApartmentQuery(filters: ApartmentFilters) {
 
 /** Returns published apartments matching validated filters as plain objects. */
 export async function getApartments(filters: ApartmentFilters = {}): Promise<Apartment[]> {
-  await connectToDatabase();
-  return ApartmentModel.find(buildApartmentQuery(filters)).sort({ createdAt: -1 }).lean<Apartment[]>();
+  try {
+    await connectToDatabase();
+    return ApartmentModel.find(buildApartmentQuery(filters)).sort({ createdAt: -1 }).lean<Apartment[]>();
+  } catch (error: unknown) {
+    console.error("تعذر تحميل الشقق من قاعدة البيانات:", error);
+    throw error;
+  }
 }
 
 /** Returns one published apartment by slug as a plain object. */
 export async function getApartmentBySlug(slug: string): Promise<Apartment | null> {
-  await connectToDatabase();
-  return ApartmentModel.findOne({ slug, isPublished: true }).lean<Apartment>();
+  try {
+    await connectToDatabase();
+    return ApartmentModel.findOne({ slug, isPublished: true }).lean<Apartment>();
+  } catch (error: unknown) {
+    console.error("تعذر تحميل الشقة من قاعدة البيانات:", error);
+    throw error;
+  }
 }
 
 /** Returns nearby published apartments with the same district, excluding the current one. */
 export async function getSimilarApartments(apartment: Apartment): Promise<Apartment[]> {
-  await connectToDatabase();
-  return ApartmentModel.find({ district: apartment.district, slug: { $ne: apartment.slug }, isPublished: true }).limit(3).lean<Apartment[]>();
+  try {
+    await connectToDatabase();
+    return ApartmentModel.find({ district: apartment.district, slug: { $ne: apartment.slug }, isPublished: true }).limit(3).lean<Apartment[]>();
+  } catch (error: unknown) {
+    console.error("تعذر تحميل الشقق المشابهة من قاعدة البيانات:", error);
+    throw error;
+  }
 }

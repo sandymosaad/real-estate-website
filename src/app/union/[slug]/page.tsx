@@ -5,13 +5,14 @@ import { WhatsAppButton } from "@/components/services/WhatsAppButton";
 import { Section } from "@/components/ui/Section";
 import { formatArea, formatPrice } from "@/lib/format";
 import { getUnionProjectBySlug } from "@/lib/data/union-projects";
+import { decodeRouteSlug } from "@/lib/slug";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
 /** Builds detail-page metadata from the selected union project. */
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = await getUnionProjectBySlug(slug).catch(() => null);
+  const project = await getUnionProjectBySlug(decodeRouteSlug(slug));
 
   return project
     ? { title: project.title, description: project.description }
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 /** Displays project costs, stage, seats, and the contact action. */
 export default async function UnionProjectDetailsPage({ params }: PageProps) {
   const { slug } = await params;
-  const project = await getUnionProjectBySlug(slug).catch(() => null);
+  const project = await getUnionProjectBySlug(decodeRouteSlug(slug));
   if (!project) notFound();
 
   const progress = (project.reservedSeats / project.totalSeats) * 100;

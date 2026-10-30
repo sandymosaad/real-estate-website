@@ -6,16 +6,26 @@ export type UnionProjectFilters = { district?: District; stage?: UnionStage; max
 
 /** Returns published union projects matching validated filters as plain objects. */
 export async function getUnionProjects(filters: UnionProjectFilters = {}): Promise<UnionProject[]> {
-  await connectToDatabase();
-  const query: Record<string, unknown> = { isPublished: true };
-  if (filters.district) query.district = filters.district;
-  if (filters.stage) query.stage = filters.stage;
-  if (filters.maximumShare) query.$expr = { $lte: [{ $divide: ["$totalProjectCost", "$totalSeats"] }, filters.maximumShare] };
-  return UnionProjectModel.find(query).sort({ createdAt: -1 }).lean<UnionProject[]>();
+  try {
+    await connectToDatabase();
+    const query: Record<string, unknown> = { isPublished: true };
+    if (filters.district) query.district = filters.district;
+    if (filters.stage) query.stage = filters.stage;
+    if (filters.maximumShare) query.$expr = { $lte: [{ $divide: ["$totalProjectCost", "$totalSeats"] }, filters.maximumShare] };
+    return UnionProjectModel.find(query).sort({ createdAt: -1 }).lean<UnionProject[]>();
+  } catch (error: unknown) {
+    console.error("تعذر تحميل مشاريع اتحاد الملاك من قاعدة البيانات:", error);
+    throw error;
+  }
 }
 
 /** Returns one published union project by slug as a plain object. */
 export async function getUnionProjectBySlug(slug: string): Promise<UnionProject | null> {
-  await connectToDatabase();
-  return UnionProjectModel.findOne({ slug, isPublished: true }).lean<UnionProject>();
+  try {
+    await connectToDatabase();
+    return UnionProjectModel.findOne({ slug, isPublished: true }).lean<UnionProject>();
+  } catch (error: unknown) {
+    console.error("تعذر تحميل مشروع اتحاد الملاك من قاعدة البيانات:", error);
+    throw error;
+  }
 }

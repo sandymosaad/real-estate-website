@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Bath, BedDouble, MapPin, Ruler } from "lucide-react";
 import type { Apartment } from "@/models/Apartment";
 import { formatArea, formatPrice } from "@/lib/format";
+import { getListingPath } from "@/lib/slug";
 
 /** Presents an apartment result with only the information needed for comparison. */
 export function ApartmentCard({ apartment }: { apartment: Apartment }) {
@@ -33,7 +34,7 @@ export function ApartmentCard({ apartment }: { apartment: Apartment }) {
         </div>
         <p className="mt-5 text-xl font-bold text-primary">{formatPrice(apartment.price)}</p>
         <Link
-          href={`/apartments/${apartment.slug}`}
+          href={getListingPath("apartment", apartment.slug)}
           className="mt-4 inline-flex font-semibold text-primary"
         >
           شوف التفاصيل

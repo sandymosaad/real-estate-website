@@ -2,6 +2,7 @@ import Link from "next/link";
 import { MapPin, Ruler } from "lucide-react";
 import type { UnionProject } from "@/models/UnionProject";
 import { formatArea, formatPrice } from "@/lib/format";
+import { getListingPath } from "@/lib/slug";
 
 /** Presents an open union project and its current seat availability. */
 export function UnionProjectCard({ project }: { project: UnionProject }) {
@@ -17,7 +18,12 @@ export function UnionProjectCard({ project }: { project: UnionProject }) {
         <p className="mt-4 flex justify-between text-sm text-muted"><span>الشركاء</span><strong className="text-ink">{project.reservedSeats} من {project.totalSeats}</strong></p>
         <span className="mt-1 block h-2 overflow-hidden rounded-full bg-primary-light"><span className="block h-full rounded-full bg-primary" style={{ width: `${progress}%` }} /></span>
         <p className="mt-4 text-lg font-bold text-primary">{formatPrice(project.totalProjectCost / project.totalSeats)} للمقعد</p>
-        <Link href={`/union/${project.slug}`} className="mt-3 inline-flex font-semibold text-primary">شوف التفاصيل</Link>
+        <Link
+          href={getListingPath("union", project.slug)}
+          className="mt-3 inline-flex font-semibold text-primary"
+        >
+          شوف التفاصيل
+        </Link>
       </div>
     </article>
   );

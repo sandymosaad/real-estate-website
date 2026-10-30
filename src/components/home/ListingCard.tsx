@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { Bath, BedDouble, MapPin, Ruler } from "lucide-react";
 import type { Listing } from "@/lib/mock-data";
+import { getListingPath } from "@/lib/slug";
 
 export function ListingCard({ listing }: { listing: Listing }) {
   const price = new Intl.NumberFormat("ar-EG").format(listing.price);
@@ -60,6 +62,12 @@ export function ListingCard({ listing }: { listing: Listing }) {
           )}
         </div>
         <p className="mt-5 text-xl font-bold text-primary">{price} جنيه</p>
+        <Link
+          href={getListingPath(listing.type, listing.id)}
+          className="mt-4 inline-flex font-semibold text-primary"
+        >
+          شوف التفاصيل
+        </Link>
       </div>
     </article>
   );

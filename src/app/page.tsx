@@ -1,3 +1,4 @@
+import { connection } from "next/server";
 import { FAQ } from "@/components/home/FAQ";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { Hero } from "@/components/home/Hero";
@@ -9,7 +10,11 @@ import { Stats } from "@/components/home/Stats";
 import { Testimonials } from "@/components/home/Testimonials";
 import { WhyUs } from "@/components/home/WhyUs";
 
-export default function Home() {
+export const instant = false;
+
+export default async function Home() {
+  await connection();
+
   return (
     <>
       <Hero />
