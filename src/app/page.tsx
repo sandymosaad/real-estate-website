@@ -1,11 +1,27 @@
-import { Section } from "@/components/ui/Section";
+import { FAQ } from "@/components/home/FAQ";
+import { FinalCTA } from "@/components/home/FinalCTA";
+import { Hero } from "@/components/home/Hero";
+import { HowItWorks } from "@/components/home/HowItWorks";
+import { LatestListings } from "@/components/home/LatestListings";
+import { QuickSearch } from "@/components/home/QuickSearch";
+import { ServicesCards } from "@/components/home/ServicesCards";
+import { Stats } from "@/components/home/Stats";
+import { Testimonials } from "@/components/home/Testimonials";
+import { WhyUs } from "@/components/home/WhyUs";
 
 export default function Home() {
   return (
-    <Section title="أهلاً بيك في بيتك أسيوط">
-      <p className="max-w-2xl text-lg text-muted">
-        هنساعدك تلاقي عقارك المناسب في أسيوط بكل سهولة.
-      </p>
-    </Section>
+    <>
+      <Hero />
+      <QuickSearch />
+      <ServicesCards />
+      <WhyUs />
+      <LatestListings />
+      <Stats />
+      <HowItWorks />
+      <Testimonials />
+      <FAQ />
+      <FinalCTA />
+    </>
   );
 }

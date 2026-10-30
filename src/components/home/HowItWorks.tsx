@@ -1,0 +1,38 @@
+import { ArrowDown, ArrowLeft } from "lucide-react";
+import { Section } from "@/components/ui/Section";
+
+const steps = ["تتواصل معانا", "نعاين", "نتفق", "نوثّق"];
+
+export function HowItWorks() {
+  return (
+    <Section title="هنمشي معاك خطوة بخطوة">
+      <div className="grid gap-6 md:grid-cols-4">
+        {steps.map((step, index) => (
+          <div
+            key={step}
+            className="relative flex items-center gap-4 md:block md:text-center"
+          >
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-bold text-white">
+              {index + 1}
+            </span>
+            <h3 className="font-bold text-ink">{step}</h3>
+            {index < steps.length - 1 && (
+              <span className="absolute start-5 top-14 text-primary md:-end-5 md:start-auto md:top-4">
+                <ArrowDown
+                  className="md:hidden"
+                  size={18}
+                  aria-hidden="true"
+                />
+                <ArrowLeft
+                  className="hidden md:block"
+                  size={18}
+                  aria-hidden="true"
+                />
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
