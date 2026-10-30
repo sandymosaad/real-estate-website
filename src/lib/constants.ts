@@ -44,6 +44,14 @@ export const TRANSFER_INSTALLMENTS_MAXIMUM = 600;
 export const TRANSFER_AREA_MAXIMUM = 10_000;
 export const TRANSFER_LEGAL_NOTICE =
   "الموقع وسيط للعرض والتواصل فقط، وإتمام التنازل بيتطلب موافقة الجهة البائعة وعقد تنازل موثق، ويُفضّل مراجعة محامي قبل أي دفع.";
+export const ADMIN_PASSWORD_COST_FACTOR = 12;
+export const ADMIN_ACCOUNT_MAX_FAILED_ATTEMPTS = 5;
+export const ADMIN_ACCOUNT_LOCK_DURATION_MS = 15 * 60 * 1000;
+export const ADMIN_SESSION_DURATION_SECONDS = 8 * 60 * 60;
+export const ADMIN_LEADS_PAGE_SIZE = 20;
+export const ADMIN_AUTH_ERROR_MESSAGE =
+  "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
+export const ADMIN_AUTH_SECRET_MINIMUM_LENGTH = 32;
 
 export function isDistrict(value: string | undefined): value is District {
   return Boolean(value && DISTRICTS.includes(value as District));

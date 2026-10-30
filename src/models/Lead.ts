@@ -34,6 +34,7 @@ const leadSchema = new Schema(
       default: "جديد",
     },
     source: { type: String, default: "website" },
+    adminNote: { type: String, default: "" },
   },
   { timestamps: true },
 );

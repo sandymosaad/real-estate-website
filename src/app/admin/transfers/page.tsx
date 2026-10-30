@@ -1,0 +1,133 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { requireAdmin } from "@/lib/admin/require-admin";
+import { connectToDatabase } from "@/lib/db";
+import { formatPrice } from "@/lib/format";
+import { TransferListingModel } from "@/models/TransferListing";
+import {
+  deleteTransferListing,
+  toggleTransferListingPublish,
+} from "./actions";
+
+export const metadata: Metadata = {
+  title: "إدارة شقق التنازل",
+  robots: { index: false, follow: false },
+};
+
+export const instant = false;
+
+type TransfersPageProps = {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+};
+
+function getSearchValue(value: string | string[] | undefined): string {
+  return Array.isArray(value) ? value[0] ?? "" : value ?? "";
+}
+
+/** Lists and protects transfer listings for administrator review. */
+export default async function AdminTransfersPage({
+  searchParams,
+}: TransfersPageProps) {
+  await requireAdmin();
+  const filters = await searchParams;
+  const search = getSearchValue(filters.search);
+  await connectToDatabase();
+
+  const query = search
+    ? { title: { $regex: search, $options: "i" } }
+    : {};
+  const listings = await TransferListingModel.find(query)
+    .sort({ createdAt: -1 })
+    .lean();
+
+  return (
+    <section>
+      <div className="flex items-center justify-between gap-4">
+        <h1 className="text-3xl font-bold">شقق التنازل</h1>
+        <Link href="/admin/transfers/new" className="rounded-xl bg-primary px-4 py-3 font-bold text-white">
+          إضافة إعلان
+        </Link>
+      </div>
+      <p className="mt-2 text-slate-600">
+        راجع الإعلانات قبل نشرها على الموقع العام.
+      </p>
+      <form className="mt-6 flex gap-3 rounded-xl bg-white p-4 shadow-sm">
+        <input
+          name="search"
+          defaultValue={search}
+          placeholder="ابحث بعنوان الإعلان"
+          className="flex-1 rounded-xl border p-3"
+        />
+        <button
+          type="submit"
+          className="rounded-xl bg-slate-900 px-5 font-bold text-white"
+        >
+          بحث
+        </button>
+      </form>
+      <div className="mt-6 overflow-x-auto rounded-xl bg-white shadow-sm">
+        <table className="w-full min-w-[760px] text-sm">
+          <thead>
+            <tr className="border-b">
+              <th className="p-4 text-start">العنوان</th>
+              <th className="p-4 text-start">المركز</th>
+              <th className="p-4 text-start">مبلغ التنازل</th>
+              <th className="p-4 text-start">الحالة</th>
+              <th className="p-4 text-start">الإجراءات</th>
+            </tr>
+          </thead>
+          <tbody>
+            {listings.map((listing) => (
+              <tr key={String(listing._id)} className="border-b">
+                <td className="p-4 font-semibold">{listing.title}</td>
+                <td className="p-4">{listing.district}</td>
+                <td className="p-4">
+                  {formatPrice(listing.transferAmountRequested)}
+                </td>
+                <td className="p-4">
+                  <span
+                    className={`rounded-full px-3 py-1 ${
+                      listing.isPublished
+                        ? "bg-green-100 text-green-700"
+                        : "bg-amber-100 text-amber-700"
+                    }`}
+                  >
+                    {listing.isPublished ? "منشور" : "للمراجعة"}
+                  </span>
+                </td>
+                <td className="flex gap-2 p-4">
+                  <form
+                    action={toggleTransferListingPublish.bind(
+                      null,
+                      String(listing._id),
+                      !listing.isPublished,
+                    )}
+                  >
+                    <button className="rounded-lg border px-3 py-2">
+                      {listing.isPublished ? "إلغاء النشر" : "نشر"}
+                    </button>
+                  </form>
+                  <form
+                    action={deleteTransferListing.bind(
+                      null,
+                      String(listing._id),
+                    )}
+                  >
+                    <button className="rounded-lg border border-red-200 px-3 py-2 text-red-700">
+                      حذف
+                    </button>
+                  </form>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {listings.length === 0 && (
+          <p className="p-8 text-center text-slate-500">
+            لا توجد شقق تنازل مسجلة حتى الآن.
+          </p>
+        )}
+      </div>
+    </section>
+  );
+}

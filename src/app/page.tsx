@@ -9,11 +9,13 @@ import { ServicesCards } from "@/components/home/ServicesCards";
 import { Stats } from "@/components/home/Stats";
 import { Testimonials } from "@/components/home/Testimonials";
 import { WhyUs } from "@/components/home/WhyUs";
+import { getPublishedTestimonials } from "@/lib/data/testimonials";
 
 export const instant = false;
 
 export default async function Home() {
   await connection();
+  const testimonials = await getPublishedTestimonials();
 
   return (
     <>
@@ -24,7 +26,7 @@ export default async function Home() {
       <LatestListings />
       <Stats />
       <HowItWorks />
-      <Testimonials />
+      <Testimonials testimonials={testimonials} />
       <FAQ />
       <FinalCTA />
     </>

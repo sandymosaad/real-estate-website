@@ -13,12 +13,6 @@ export type Listing = {
   totalSeats?: number;
 };
 
-export type Testimonial = {
-  name: string;
-  district: string;
-  text: string;
-};
-
 export type Feature = {
   title: string;
   description: string;
@@ -33,13 +27,6 @@ export const LATEST_LISTINGS: Listing[] = [
   { id: "4", type: "union", title: "اتحاد ملاك النخيل", district: "أبنوب", price: 720000, area: 100, seats: 8, totalSeats: 12 },
   { id: "5", type: "apartment", title: "شقة عائلية على المفتاح", district: "أبو تيج", price: 1320000, area: 130, rooms: 3, bathrooms: 2 },
   { id: "6", type: "union", title: "مشروع دارنا", district: "ديروط", price: 640000, area: 95, seats: 4, totalSeats: 8 },
-];
-
-// MOCK - replace with DB later
-export const TESTIMONIALS: Testimonial[] = [
-  { name: "محمد أحمد", district: "أسيوط", text: "التعامل كان مريح وواضح من أول مكالمة، ووصلنا للاختيار المناسب من غير لف كتير." },
-  { name: "سارة محمود", district: "أسيوط الجديدة", text: "فهموني كل التفاصيل ببساطة وساعدوني أقارن بين الاختيارات بهدوء." },
-  { name: "أحمد حسن", district: "أبو تيج", text: "حسيت إن في حد فاهم السوق المحلي وبيتابع معايا خطوة بخطوة." },
 ];
 
 // MOCK - replace with DB later

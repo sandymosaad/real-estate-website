@@ -22,6 +22,18 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 ## Learn More
 
+## لوحة الإدارة
+
+أضف `AUTH_SECRET` بطول 32 حرفًا على الأقل، ثم شغّل:
+
+```bash
+npm run create-admin
+```
+
+يمكن أيضًا تمرير البريد وكلمة المرور والاسم كوسائط للأمر. بعد ذلك افتح `/admin/login`
+وسجّل الدخول بالحساب الذي أنشأته. لا توجد صفحة تسجيل عامة، ويجب الاحتفاظ بمفتاح
+`AUTH_SECRET` في متغيرات البيئة السرية.
+
 To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.

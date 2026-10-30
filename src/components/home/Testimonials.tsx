@@ -1,12 +1,14 @@
 import { Quote } from "lucide-react";
-import { TESTIMONIALS } from "@/lib/mock-data";
 import { Section } from "@/components/ui/Section";
+import type { Testimonial } from "@/models/Testimonial";
 
-export function Testimonials() {
+export function Testimonials({ testimonials }: { testimonials: Testimonial[] }) {
+  if (testimonials.length === 0) return null;
+
   return (
     <Section title="كلام من ناس جربتنا">
       <div className="grid gap-5 md:grid-cols-3">
-        {TESTIMONIALS.map((item) => (
+        {testimonials.map((item) => (
           <article
             key={item.name}
             className="rounded-xl border border-border p-6"
