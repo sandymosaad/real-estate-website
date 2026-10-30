@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Building2, UsersRound } from "lucide-react";
+import { ArrowLeft, Building2, HandCoins, UsersRound } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 
 export function ServicesCards() {
@@ -17,12 +17,18 @@ export function ServicesCards() {
       href: "/union",
       icon: UsersRound,
     },
+    {
+      title: "تنازل شقق بالتقسيط",
+      description: "اعرض شقتك للتنازل أو دور على وحدة تكمل أقساطها.",
+      href: "/transfers",
+      icon: HandCoins,
+    },
   ];
 
   return (
     <section className="py-12 md:py-16">
       <Container>
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {services.map(({ title, description, href, icon: Icon }) => (
             <article
               key={title}

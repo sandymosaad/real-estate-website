@@ -55,9 +55,14 @@ export function decodeRouteSlug(slug: string): string {
 
 /** Builds the canonical detail path for an apartment or union project. */
 export function getListingPath(
-  type: "apartment" | "union",
+  type: "apartment" | "union" | "transfer",
   slug: string,
 ): string {
-  const route = type === "apartment" ? "apartments" : "union";
+  const route =
+    type === "apartment"
+      ? "apartments"
+      : type === "union"
+        ? "union"
+        : "transfers";
   return `/${route}/${encodeURIComponent(slug)}`;
 }

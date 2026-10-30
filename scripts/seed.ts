@@ -2,6 +2,7 @@ import { loadEnvConfig } from "@next/env";
 import { connectToDatabase } from "../src/lib/db";
 import { ApartmentModel } from "../src/models/Apartment";
 import { UnionProjectModel } from "../src/models/UnionProject";
+import { TransferListingModel } from "../src/models/TransferListing";
 import { createSlug } from "../src/lib/slug";
 
 loadEnvConfig(process.cwd());
@@ -26,12 +27,22 @@ const sampleUnionProjects = [
   { title: "مشروع العيلة في أبو تيج", slug: createSlug("union-project-abu-tig-01"), description: "مشاركة واضحة في مشروع سكني تحت الإنشاء.", district: "أبو تيج", landPrice: 1800000, totalProjectCost: 9000000, totalSeats: 10, reservedSeats: 7, landAreaSqm: 550, stage: "تجميع شركاء", isPublished: true },
 ];
 
+const sampleTransferListings = [
+  { title: "شقة بالتقسيط في أسيوط الجديدة", slug: createSlug("transfer-asyut-new-01"), description: "وحدة عملية في مشروع سكني قريب من الخدمات.", district: "أسيوط الجديدة", address: "الحي الأول", areaSqm: 125, rooms: 3, bathrooms: 2, floor: 2, status: "جاهزة", sellerCompanyName: "شركة النخبة للتطوير", originalPrice: 1800000, amountPaid: 650000, transferAmountRequested: 720000, monthlyInstallment: 12000, remainingInstallments: 48, requiresSellerApproval: true, listingStatus: "متاح", isPublished: true },
+  { title: "شقة عائلية في أسيوط", slug: createSlug("transfer-asyut-01"), description: "شقة بمساحة مناسبة في موقع حيوي.", district: "أسيوط", address: "شارع الجمهورية", areaSqm: 140, rooms: 3, bathrooms: 2, floor: 4, status: "جاهزة", sellerCompanyName: "شركة العمران", originalPrice: 2100000, amountPaid: 900000, transferAmountRequested: 950000, monthlyInstallment: 15000, remainingInstallments: 60, requiresSellerApproval: true, listingStatus: "متاح", isPublished: true },
+  { title: "وحدة تحت الإنشاء في ديروط", slug: createSlug("transfer-dayrout-01"), description: "اختيار مناسب لمن يفضل السداد على مراحل.", district: "ديروط", address: "منطقة المركز", areaSqm: 110, rooms: 2, bathrooms: 1, floor: 3, status: "تحت الإنشاء", sellerCompanyName: "شركة بداية", originalPrice: 1200000, amountPaid: 300000, transferAmountRequested: 350000, monthlyInstallment: 8000, remainingInstallments: 72, requiresSellerApproval: true, listingStatus: "متاح", isPublished: true },
+  { title: "شقة في أبو تيج بالتقسيط", slug: createSlug("transfer-abu-tig-01"), description: "وحدة بتوزيع عملي للعيلة.", district: "أبو تيج", address: "شارع المحطة", areaSqm: 130, rooms: 3, bathrooms: 2, floor: 1, status: "جاهزة", sellerCompanyName: "شركة بيتنا", originalPrice: 1600000, amountPaid: 550000, transferAmountRequested: 600000, monthlyInstallment: 10000, remainingInstallments: 55, requiresSellerApproval: true, listingStatus: "متاح", isPublished: true },
+  { title: "شقة اقتصادية في منفلوط", slug: createSlug("transfer-manflout-01"), description: "مساحة مناسبة وقسط شهري واضح.", district: "منفلوط", address: "شارع المدارس", areaSqm: 105, rooms: 2, bathrooms: 1, floor: 2, status: "جاهزة", sellerCompanyName: "شركة خطوة", originalPrice: 1050000, amountPaid: 400000, transferAmountRequested: 430000, monthlyInstallment: 7000, remainingInstallments: 60, requiresSellerApproval: true, listingStatus: "متاح", isPublished: true },
+];
+
 async function seedDatabase(): Promise<void> {
   await connectToDatabase();
   await ApartmentModel.deleteMany({});
   await UnionProjectModel.deleteMany({});
+  await TransferListingModel.deleteMany({});
   await ApartmentModel.insertMany(sampleApartments);
   await UnionProjectModel.insertMany(sampleUnionProjects);
+  await TransferListingModel.insertMany(sampleTransferListings);
   console.log("تم تحميل بيانات تجريبية للعقارات ومشاريع اتحاد الملاك.");
 }
 

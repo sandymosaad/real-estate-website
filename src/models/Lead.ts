@@ -9,11 +9,25 @@ const leadSchema = new Schema(
     interestType: {
       type: String,
       required: true,
-      enum: ["شقة", "اتحاد ملاك", "استفسار عام"],
+      enum: [
+        "شقة",
+        "اتحاد ملاك",
+        "استفسار عام",
+        "تنازل عن شقة",
+        "استلام تنازل",
+      ],
     },
     message: { type: String },
-    relatedItemType: { type: String, enum: ["apartment", "unionProject"] },
+    relatedItemType: {
+      type: String,
+      enum: ["apartment", "unionProject", "transferListing"],
+    },
     relatedItemSlug: { type: String },
+    apartmentDistrict: { type: String, enum: DISTRICTS },
+    monthlyInstallment: { type: Number, min: 0 },
+    remainingInstallments: { type: Number, min: 0, integer: true },
+    amountPaid: { type: Number, min: 0 },
+    sellerCompanyName: { type: String },
     status: {
       type: String,
       enum: ["جديد", "تم التواصل", "مغلق"],

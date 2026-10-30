@@ -15,12 +15,13 @@ import { useLeadForm } from "./useLeadForm";
 
 type LeadFormProps = {
   defaultInterestType: LeadInterestType;
-  relatedItemType?: "apartment" | "unionProject";
+  relatedItemType?: "apartment" | "unionProject" | "transferListing";
   relatedItemSlug?: string;
   title?: string;
   submitLabel?: string;
   showDistrictField?: boolean;
   showMessageField?: boolean;
+  showTransferFields?: boolean;
 };
 
 /** Provides an accessible lead form shared by contact and detail pages. */
@@ -32,6 +33,7 @@ export function LeadForm({
   submitLabel = "ابعت الطلب",
   showDistrictField = true,
   showMessageField = true,
+  showTransferFields = false,
 }: LeadFormProps) {
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
@@ -41,6 +43,11 @@ export function LeadForm({
     defaultInterestType,
   );
   const [website, setWebsite] = useState("");
+  const [apartmentDistrict, setApartmentDistrict] = useState("");
+  const [monthlyInstallment, setMonthlyInstallment] = useState("");
+  const [remainingInstallments, setRemainingInstallments] = useState("");
+  const [amountPaid, setAmountPaid] = useState("");
+  const [sellerCompanyName, setSellerCompanyName] = useState("");
   const form = useLeadForm({
     defaultInterestType,
     relatedItemType,
@@ -58,6 +65,15 @@ export function LeadForm({
       relatedItemType,
       relatedItemSlug,
       website,
+      apartmentDistrict: (apartmentDistrict || undefined) as District | undefined,
+      monthlyInstallment: monthlyInstallment
+        ? Number(monthlyInstallment)
+        : undefined,
+      remainingInstallments: remainingInstallments
+        ? Number(remainingInstallments)
+        : undefined,
+      amountPaid: amountPaid ? Number(amountPaid) : undefined,
+      sellerCompanyName: sellerCompanyName || undefined,
     });
   }
 
@@ -176,6 +192,76 @@ export function LeadForm({
               <p className="mt-1 text-sm text-red-600">
                 {form.errors.message}
               </p>
+            )}
+            {showTransferFields && (
+              <>
+                <div>
+                  <label htmlFor="apartmentDistrict" className="text-sm font-semibold text-ink">
+                    مركز الشقة
+                  </label>
+                  <select
+                    id="apartmentDistrict"
+                    value={apartmentDistrict}
+                    onChange={(event) => setApartmentDistrict(event.target.value)}
+                    className="mt-2 w-full rounded-xl border border-border bg-white p-3 outline-none"
+                    aria-invalid={Boolean(form.errors.apartmentDistrict)}
+                  >
+                    <option value="">اختار المركز</option>
+                    {ASSIUT_DISTRICTS.map((item) => (
+                      <option key={item}>{item}</option>
+                    ))}
+                  </select>
+                  {form.errors.apartmentDistrict && (
+                    <p className="mt-1 text-sm text-red-600">
+                      {form.errors.apartmentDistrict}
+                    </p>
+                  )}
+                </div>
+                <FormField
+                  id="amountPaid"
+                  name="amountPaid"
+                  label="المبلغ المدفوع"
+                  type="number"
+                  min={0}
+                  value={amountPaid}
+                  onChange={(event) => setAmountPaid(event.target.value)}
+                  error={form.errors.amountPaid}
+                  required
+                />
+                <FormField
+                  id="monthlyInstallment"
+                  name="monthlyInstallment"
+                  label="القسط الشهري"
+                  type="number"
+                  min={0}
+                  value={monthlyInstallment}
+                  onChange={(event) => setMonthlyInstallment(event.target.value)}
+                  error={form.errors.monthlyInstallment}
+                  required
+                />
+                <FormField
+                  id="remainingInstallments"
+                  name="remainingInstallments"
+                  label="الأقساط المتبقية"
+                  type="number"
+                  min={0}
+                  value={remainingInstallments}
+                  onChange={(event) =>
+                    setRemainingInstallments(event.target.value)
+                  }
+                  error={form.errors.remainingInstallments}
+                  required
+                />
+                <FormField
+                  id="sellerCompanyName"
+                  name="sellerCompanyName"
+                  label="اسم الجهة البائعة"
+                  value={sellerCompanyName}
+                  onChange={(event) => setSellerCompanyName(event.target.value)}
+                  error={form.errors.sellerCompanyName}
+                  required
+                />
+              </>
             )}
           </div>
         )}
