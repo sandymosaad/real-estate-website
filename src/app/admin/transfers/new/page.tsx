@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { requireAdmin } from "@/lib/admin/require-admin";
+import { ImageUploader } from "@/components/admin/ImageUploader";
 import { ASSIUT_DISTRICTS, APARTMENT_STATUSES, TRANSFER_LISTING_STATUSES } from "@/lib/constants";
 import { createTransferListingFromForm } from "./actions";
 
@@ -34,6 +35,7 @@ export default async function NewTransferListingPage() {
         <input name="monthlyInstallment" type="number" min="0" required placeholder="القسط الشهري" className="rounded-xl border p-3" />
         <input name="remainingInstallments" type="number" min="0" required placeholder="الأقساط المتبقية" className="rounded-xl border p-3" />
         <select name="listingStatus" required className="rounded-xl border p-3"><option value="">حالة الإعلان</option>{TRANSFER_LISTING_STATUSES.map((item) => <option key={item}>{item}</option>)}</select>
+        <ImageUploader />
         <button className="rounded-xl bg-primary p-3 font-bold text-white md:col-span-2">حفظ الإعلان للمراجعة</button>
       </form>
     </section>

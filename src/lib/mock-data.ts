@@ -11,6 +11,7 @@ export type Listing = {
   bathrooms?: number;
   seats?: number;
   totalSeats?: number;
+  image?: string;
 };
 
 export type Feature = {

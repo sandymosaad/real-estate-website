@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Bath, BedDouble, MapPin, Ruler } from "lucide-react";
 import type { Apartment } from "@/models/Apartment";
+import { DEFAULT_LISTING_IMAGE } from "@/lib/constants";
 import { formatArea, formatPrice } from "@/lib/format";
 import { getListingPath } from "@/lib/slug";
 
@@ -8,8 +10,14 @@ import { getListingPath } from "@/lib/slug";
 export function ApartmentCard({ apartment }: { apartment: Apartment }) {
   return (
     <article className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
-      <div className="flex h-44 items-center justify-center bg-primary-light text-primary">
-        <span className="font-semibold">صورة الوحدة</span>
+      <div className="relative h-44 bg-primary-light text-primary">
+        <Image
+          src={apartment.images?.[0] || DEFAULT_LISTING_IMAGE}
+          alt={apartment.title}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="object-cover"
+        />
       </div>
       <div className="p-5">
         <p className="text-sm font-semibold text-primary">شقة للبيع</p>

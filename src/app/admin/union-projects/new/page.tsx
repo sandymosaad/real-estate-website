@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { requireAdmin } from "@/lib/admin/require-admin";
+import { ImageUploader } from "@/components/admin/ImageUploader";
 import { ASSIUT_DISTRICTS, UNION_STAGES } from "@/lib/constants";
 import { createUnionProjectFromForm } from "./actions";
 
@@ -26,6 +27,7 @@ export default async function NewUnionProjectPage() {
         <input name="totalSeats" type="number" min="1" required placeholder="إجمالي المقاعد" className="rounded-xl border p-3" />
         <input name="reservedSeats" type="number" min="0" required placeholder="المقاعد المحجوزة" className="rounded-xl border p-3" />
         <input name="landAreaSqm" type="number" min="0" required placeholder="مساحة الأرض" className="rounded-xl border p-3" />
+        <ImageUploader />
         <button className="rounded-xl bg-primary p-3 font-bold text-white md:col-span-2">حفظ المشروع</button>
       </form>
     </section>

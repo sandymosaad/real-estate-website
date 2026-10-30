@@ -1,4 +1,5 @@
 export const SITE_NAME = "بيتك أسيوط";
+export const DEFAULT_LISTING_IMAGE = "/home.jpg";
 
 export const NAV_LINKS = [
   { label: "الرئيسية", href: "/" },

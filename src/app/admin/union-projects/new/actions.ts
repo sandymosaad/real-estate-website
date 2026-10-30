@@ -34,7 +34,8 @@ export async function createUnionProjectFromForm(formData: FormData): Promise<vo
   }
   await connectToDatabase();
   const slug = await getUniqueSlug(input.slugSource);
-  await UnionProjectModel.create({ ...input, slug, images: [] });
+  const images = JSON.parse(input.images) as string[];
+  await UnionProjectModel.create({ ...input, slug, images });
   revalidatePath("/admin/union-projects");
   revalidatePath("/union");
 }

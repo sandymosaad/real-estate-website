@@ -31,7 +31,8 @@ export async function createApartmentFromForm(formData: FormData): Promise<void>
   const input = getApartmentInput(formData);
   await connectToDatabase();
   const slug = await getUniqueSlug(input.slugSource);
-  await ApartmentModel.create({ ...input, slug, images: [], features: [] });
+  const images = JSON.parse(input.images) as string[];
+  await ApartmentModel.create({ ...input, slug, images, features: [] });
   revalidatePath("/admin/apartments");
   revalidatePath("/apartments");
 }

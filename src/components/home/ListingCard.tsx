@@ -1,7 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Bath, BedDouble, MapPin, Ruler } from "lucide-react";
 import type { Listing } from "@/lib/mock-data";
 import { getListingPath } from "@/lib/slug";
+import { DEFAULT_LISTING_IMAGE } from "@/lib/constants";
 
 export function ListingCard({ listing }: { listing: Listing }) {
   const price = new Intl.NumberFormat("ar-EG").format(listing.price);
@@ -12,10 +14,14 @@ export function ListingCard({ listing }: { listing: Listing }) {
 
   return (
     <article className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
-      <div className="flex h-40 items-center justify-center bg-primary-light text-primary">
-        <span className="text-sm font-semibold">
-          {listing.type === "union" ? "مشروع اتحاد ملاك" : "صورة الوحدة"}
-        </span>
+      <div className="relative h-40 bg-primary-light text-primary">
+        <Image
+          src={listing.image || DEFAULT_LISTING_IMAGE}
+          alt={listing.title}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="object-cover"
+        />
       </div>
       <div className="p-5">
         <p className="text-sm font-semibold text-primary">

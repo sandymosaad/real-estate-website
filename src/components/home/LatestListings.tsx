@@ -24,6 +24,7 @@ export async function LatestListings() {
         area: apartment.areaSqm,
         rooms: apartment.rooms,
         bathrooms: apartment.bathrooms,
+        image: apartment.images[0],
       })),
       ...unionProjects.slice(0, 3).map((project) => ({
         id: project.slug,
@@ -34,6 +35,7 @@ export async function LatestListings() {
         area: project.landAreaSqm,
         seats: project.reservedSeats,
         totalSeats: project.totalSeats,
+        image: project.images[0],
       })),
     ];
   } catch (error: unknown) {

@@ -23,6 +23,7 @@ export const apartmentAdminSchema = z.object({
   floor: positiveNumber,
   finishing: z.enum(APARTMENT_FINISHINGS),
   status: z.enum(APARTMENT_STATUSES),
+  images: z.string().optional().default("[]"),
 });
 
 export const unionProjectAdminSchema = z.object({
@@ -36,6 +37,7 @@ export const unionProjectAdminSchema = z.object({
   reservedSeats: z.coerce.number().int().min(0, "عدد المقاعد غير صحيح."),
   landAreaSqm: positiveNumber,
   stage: z.enum(UNION_STAGES),
+  images: z.string().optional().default("[]"),
 });
 
 export const transferListingAdminSchema = z.object({
@@ -56,6 +58,7 @@ export const transferListingAdminSchema = z.object({
   monthlyInstallment: positiveNumber,
   remainingInstallments: z.coerce.number().int().min(0),
   listingStatus: z.enum(TRANSFER_LISTING_STATUSES),
+  images: z.string().optional().default("[]"),
 });
 
 export type ApartmentAdminInput = z.infer<typeof apartmentAdminSchema>;

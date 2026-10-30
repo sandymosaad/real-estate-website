@@ -5,6 +5,7 @@ import {
   APARTMENT_STATUSES,
   ASSIUT_DISTRICTS,
 } from "@/lib/constants";
+import { ImageUploader } from "@/components/admin/ImageUploader";
 import { createApartmentFromForm } from "./actions";
 
 export const metadata: Metadata = {
@@ -115,6 +116,7 @@ export default async function NewApartmentPage() {
             <option key={item}>{item}</option>
           ))}
         </select>
+        <ImageUploader />
         <button className="rounded-xl bg-primary p-3 font-bold text-white md:col-span-2">
           حفظ الشقة
         </button>

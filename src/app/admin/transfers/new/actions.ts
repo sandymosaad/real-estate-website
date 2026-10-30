@@ -36,10 +36,11 @@ export async function createTransferListingFromForm(
   }
   await connectToDatabase();
   const slug = await getUniqueSlug(input.slugSource);
+  const images = JSON.parse(input.images) as string[];
   await TransferListingModel.create({
     ...input,
     slug,
-    images: [],
+    images,
     isPublished: false,
   });
   revalidatePath("/admin/transfers");

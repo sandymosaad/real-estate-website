@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, Ruler } from "lucide-react";
 import type { TransferListing } from "@/models/TransferListing";
+import { DEFAULT_LISTING_IMAGE } from "@/lib/constants";
 import { formatArea, formatPrice } from "@/lib/format";
 import { getListingPath } from "@/lib/slug";
 
@@ -12,8 +14,14 @@ export function TransferListingCard({
 }) {
   return (
     <article className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
-      <div className="flex h-44 items-center justify-center bg-primary-light text-primary">
-        <span className="font-semibold">صورة الشقة</span>
+      <div className="relative h-44 bg-primary-light text-primary">
+        <Image
+          src={listing.images?.[0] || DEFAULT_LISTING_IMAGE}
+          alt={listing.title}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="object-cover"
+        />
       </div>
       <div className="p-5">
         <div className="flex items-start justify-between gap-3">

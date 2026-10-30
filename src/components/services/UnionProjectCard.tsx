@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, Ruler } from "lucide-react";
 import type { UnionProject } from "@/models/UnionProject";
+import { DEFAULT_LISTING_IMAGE } from "@/lib/constants";
 import { formatArea, formatPrice } from "@/lib/format";
 import { getListingPath } from "@/lib/slug";
 
@@ -9,7 +11,15 @@ export function UnionProjectCard({ project }: { project: UnionProject }) {
   const progress = (project.reservedSeats / project.totalSeats) * 100;
   return (
     <article className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
-      <div className="flex h-44 items-center justify-center bg-primary-light text-primary"><span className="font-semibold">صورة المشروع</span></div>
+      <div className="relative h-44 bg-primary-light text-primary">
+        <Image
+          src={project.images?.[0] || DEFAULT_LISTING_IMAGE}
+          alt={project.title}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="object-cover"
+        />
+      </div>
       <div className="p-5">
         <p className="text-sm font-semibold text-primary">اتحاد ملاك</p>
         <h2 className="mt-2 text-xl font-bold text-ink">{project.title}</h2>
