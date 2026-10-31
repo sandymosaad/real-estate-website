@@ -4,7 +4,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ASSIUT_DISTRICTS, TRANSFER_LISTING_STATUSES } from "@/lib/constants";
 
 const fieldClassName =
-  "mt-2 w-full rounded-xl border border-border bg-surface p-3 text-sm outline-none focus:border-primary";
+  "form-control form-select mt-2 text-sm";
 
 /** Updates transfer listing filters in the URL. */
 export function TransferFilters() {
@@ -20,7 +20,7 @@ export function TransferFilters() {
   }
 
   return (
-    <div className="rounded-xl border border-border bg-surface p-4 shadow-sm">
+    <div className="form-card p-4 shadow-sm">
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <label className="text-sm font-semibold text-ink">
           المركز

@@ -15,7 +15,7 @@ export function FormField({ label, error, id, ...props }: FormFieldProps) {
       <input
         id={id}
         aria-invalid={Boolean(error)}
-        className="mt-2 w-full rounded-xl border border-border bg-surface p-3 outline-none placeholder:text-muted focus:border-primary focus:ring-2 focus:ring-primary"
+        className="form-control mt-2 w-full"
         {...props}
       />
       {error && <p className="mt-1 text-sm text-error">{error}</p>}

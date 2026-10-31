@@ -44,12 +44,12 @@ export default async function AdminApartmentsPage({
           إضافة شقة
         </Link>
       </div>
-      <form className="mt-6 flex gap-3 rounded-xl bg-surface p-4 shadow-sm">
+      <form className="form-card mt-6 flex gap-3 p-4 shadow-sm">
         <input
           name="search"
           defaultValue={search}
           placeholder="ابحث بعنوان الشقة"
-          className="flex-1 rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
+          className="flex-1 form-control"
         />
         <button className="rounded-xl bg-surface px-5 font-bold text-on-primary">
           بحث

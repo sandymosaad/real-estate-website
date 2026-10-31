@@ -9,7 +9,7 @@ import {
 import { Button } from "@/components/ui/Button";
 
 const fieldClassName =
-  "mt-2 w-full rounded-xl border border-border bg-surface p-3 text-sm outline-none focus:border-primary";
+  "form-control form-select mt-2 text-sm";
 
 /** Updates apartment filters in the URL so results remain shareable and refresh-safe. */
 export function ApartmentFilters() {
@@ -34,7 +34,7 @@ export function ApartmentFilters() {
   }
 
   return (
-    <div className="rounded-xl border border-border bg-surface p-4 shadow-sm">
+    <div className="form-card p-4 shadow-sm">
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <label className="text-sm font-semibold text-ink">
           المركز

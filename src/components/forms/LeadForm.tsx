@@ -103,7 +103,7 @@ export function LeadForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-xl border border-border bg-surface p-6 shadow-sm"
+      className="form-card shadow-sm"
       aria-live="polite"
     >
       {title && (
@@ -138,7 +138,7 @@ export function LeadForm({
               id="district"
               value={district}
               onChange={(event) => setDistrict(event.target.value)}
-              className="mt-2 w-full rounded-xl border border-border bg-surface p-3 outline-none placeholder:text-muted focus:border-primary focus:ring-2 focus:ring-primary"
+              className="form-control form-select mt-2"
               aria-invalid={Boolean(form.errors.district)}
             >
               <option value="">اختار المركز</option>
@@ -166,7 +166,7 @@ export function LeadForm({
             onChange={(event) =>
               setInterestType(event.target.value as LeadInterestType)
             }
-            className="mt-2 w-full rounded-xl border border-border bg-surface p-3 outline-none focus:border-primary focus:ring-2 focus:ring-primary"
+            className="form-control form-select mt-2"
           >
             {LEAD_INTEREST_TYPES.map((item) => (
               <option key={item}>{item}</option>
@@ -183,7 +183,7 @@ export function LeadForm({
               value={message}
               onChange={(event) => setMessage(event.target.value)}
               aria-invalid={Boolean(form.errors.message)}
-              className="mt-2 min-h-28 w-full rounded-xl border border-border bg-surface p-3 outline-none placeholder:text-muted focus:border-primary focus:ring-2 focus:ring-primary"
+              className="form-control mt-2 min-h-28 resize-y"
             />
             {form.errors.message && (
               <p className="mt-1 text-sm text-error">
@@ -200,7 +200,7 @@ export function LeadForm({
                     id="apartmentDistrict"
                     value={apartmentDistrict}
                     onChange={(event) => setApartmentDistrict(event.target.value)}
-                    className="mt-2 w-full rounded-xl border border-border bg-surface p-3 outline-none"
+                    className="form-control form-select mt-2"
                     aria-invalid={Boolean(form.errors.apartmentDistrict)}
                   >
                     <option value="">اختار المركز</option>

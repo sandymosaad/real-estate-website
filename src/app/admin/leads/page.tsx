@@ -35,9 +35,9 @@ export default async function AdminLeadsPage({ searchParams }: LeadsPageProps) {
         <h1 className="text-3xl font-bold">الطلبات</h1>
         <Link href="/api/admin/leads/export" className="rounded-xl bg-primary px-4 py-3 font-bold text-on-primary">تصدير CSV</Link>
       </div>
-      <form className="mt-6 grid gap-3 rounded-xl bg-surface p-4 sm:grid-cols-3">
-        <input name="search" defaultValue={search} placeholder="ابحث بالاسم أو الموبايل" className="rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary" />
-        <select name="status" defaultValue={status} className="rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"><option value="">كل الحالات</option><option>جديد</option><option>تم التواصل</option><option>مغلق</option></select>
+      <form className="form-card mt-6 grid gap-3 p-4 sm:grid-cols-3">
+        <input name="search" defaultValue={search} placeholder="ابحث بالاسم أو الموبايل" className="form-control" />
+        <select name="status" defaultValue={status} className="form-control form-select"><option value="">كل الحالات</option><option>جديد</option><option>تم التواصل</option><option>مغلق</option></select>
         <button className="rounded-xl bg-surface p-3 font-bold text-on-primary">بحث</button>
       </form>
       <div className="mt-6 overflow-x-auto rounded-xl bg-surface shadow-sm">

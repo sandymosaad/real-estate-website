@@ -99,7 +99,7 @@ export function ImageUploader({
           accept="image/jpeg,image/png,image/webp"
           disabled={isUploading}
           onChange={(event) => void handleFiles(event.target.files)}
-          className="mt-2 block w-full rounded-xl border p-3"
+          className="form-file mt-2 block"
         />
       </label>
       <input type="hidden" name={name} value={JSON.stringify(images)} />

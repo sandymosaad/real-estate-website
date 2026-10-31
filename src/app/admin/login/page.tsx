@@ -26,7 +26,7 @@ export default async function AdminLoginPage({
     >
       <form
         action={loginAdmin}
-        className="w-full max-w-md rounded-xl bg-surface p-8 shadow"
+        className="form-card w-full max-w-md p-8 shadow"
       >
         <h1 className="text-2xl font-bold text-ink">دخول لوحة إدارة {SITE_NAME}</h1>
         {error && (
@@ -41,7 +41,7 @@ export default async function AdminLoginPage({
             type="email"
             required
             autoComplete="username"
-            className="mt-2 w-full rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
+            className="mt-2 w-full form-control"
           />
         </label>
         <label className="mt-4 block text-sm font-semibold">
@@ -51,7 +51,7 @@ export default async function AdminLoginPage({
             type="password"
             required
             autoComplete="current-password"
-            className="mt-2 w-full rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
+            className="mt-2 w-full form-control"
           />
         </label>
         <button

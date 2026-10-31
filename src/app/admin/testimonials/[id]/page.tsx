@@ -32,20 +32,20 @@ export default async function TestimonialEditPage({
       <h1 className="text-3xl font-bold">تعديل رأي عميل</h1>
       <form
         action={updateTestimonialFromForm.bind(null, String(testimonial._id))}
-        className="mt-6 grid max-w-2xl gap-4 rounded-xl bg-surface p-5 shadow-sm"
+        className="form-card mt-6 grid max-w-2xl gap-4 p-5 shadow-sm"
       >
         <input
           name="name"
           required
           defaultValue={testimonial.name}
           placeholder="اسم العميل"
-          className="rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
+          className="form-control"
         />
         <select
           name="district"
           required
           defaultValue={testimonial.district}
-          className="rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
+          className="form-control form-select"
         >
           {ASSIUT_DISTRICTS.map((district) => (
             <option key={district}>{district}</option>
@@ -56,7 +56,7 @@ export default async function TestimonialEditPage({
           required
           maxLength={400}
           defaultValue={testimonial.text}
-          className="min-h-28 rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
+          className="min-h-28 form-control"
         />
         <label className="flex items-center gap-2 text-sm">
           <input
@@ -64,6 +64,7 @@ export default async function TestimonialEditPage({
             type="checkbox"
             value="true"
             defaultChecked={testimonial.isPublished}
+            className="form-check"
           />
           منشور
         </label>
