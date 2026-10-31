@@ -3,7 +3,6 @@ import { ApartmentFilters } from "@/components/services/ApartmentFilters";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import {
-  EMPTY_RESULTS_MESSAGE,
   isApartmentFinishing,
   isApartmentStatus,
   isDistrict,
@@ -13,6 +12,10 @@ import {
   type ApartmentFilters as ApartmentFilterValues,
 } from "@/lib/data/apartments";
 import type { Apartment } from "@/models/Apartment";
+import { apartmentsContent } from "@/content/apartments";
+import { SectionCTA } from "@/components/contact/SectionCTA";
+import { CallButton } from "@/components/contact/CallButton";
+import { ContactWhatsAppButton } from "@/components/contact/WhatsAppButton";
 
 type SearchParams = Record<string, string | string[] | undefined>;
 
@@ -78,7 +81,7 @@ export default async function ApartmentsPage({
 
   if (hasDatabaseError) {
     return (
-      <Section title="شقق للبيع">
+      <Section title={apartmentsContent.title}>
         <Container>
           <p className="rounded-xl border border-border p-8 text-center text-muted">
             حصلت مشكلة مؤقتة في تحميل الشقق. جرّب تاني بعد شوية.
@@ -89,10 +92,15 @@ export default async function ApartmentsPage({
   }
 
   return (
+    <>
     <Section
-      title="شقق للبيع"
-      subtitle="اختار من شقق متاحة في مراكز أسيوط المختلفة."
+      title={apartmentsContent.title}
+      subtitle={apartmentsContent.subtitle}
     >
+      <div className="mb-6 flex flex-wrap gap-3">
+        <CallButton context="شقق للبيع" />
+        <ContactWhatsAppButton context="شقق للبيع" />
+      </div>
       <ApartmentFilters />
       <p className="mt-6 font-semibold text-ink">{apartments.length} نتيجة</p>
       <div className="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -102,9 +110,11 @@ export default async function ApartmentsPage({
       </div>
       {apartments.length === 0 && (
         <p className="mt-5 rounded-xl border border-border p-8 text-center text-muted">
-          {EMPTY_RESULTS_MESSAGE}
+          {apartmentsContent.empty}
         </p>
       )}
     </Section>
+    <SectionCTA context="شقق للبيع" />
+    </>
   );
 }

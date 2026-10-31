@@ -5,6 +5,8 @@ import { formatArea, formatPrice } from "@/lib/format";
 import { Section } from "@/components/ui/Section";
 import { WhatsAppButton } from "./WhatsAppButton";
 import { ApartmentCard } from "./ApartmentCard";
+import { CallButton } from "@/components/contact/CallButton";
+import { ContactWhatsAppButton } from "@/components/contact/WhatsAppButton";
 
 /** Renders the complete apartment detail content. */
 export function ApartmentDetail({ apartment, similarApartments }: { apartment: Apartment; similarApartments: Apartment[] }) {
@@ -35,6 +37,10 @@ export function ApartmentDetail({ apartment, similarApartments }: { apartment: A
               {formatPrice(apartment.price)}
             </p>
             <div className="mt-6">
+              <div className="mb-3 flex flex-wrap gap-3">
+                <CallButton context={`الشقة ${apartment.title}`} />
+                <ContactWhatsAppButton context={`الشقة ${apartment.title}`} />
+              </div>
               <WhatsAppButton message={message} label="اسأل عن الشقة على واتساب" />
             </div>
           </div>

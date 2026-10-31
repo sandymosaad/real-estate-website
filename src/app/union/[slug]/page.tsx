@@ -7,6 +7,8 @@ import { Section } from "@/components/ui/Section";
 import { formatArea, formatPrice } from "@/lib/format";
 import { getUnionProjectBySlug } from "@/lib/data/union-projects";
 import { decodeRouteSlug } from "@/lib/slug";
+import { CallButton } from "@/components/contact/CallButton";
+import { ContactWhatsAppButton } from "@/components/contact/WhatsAppButton";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -91,7 +93,11 @@ export default async function UnionProjectDetailsPage({ params }: PageProps) {
         </div>
 
         <div className="mt-8">
-          <WhatsAppButton message={message} label="احجز مقعدك" />
+          <div className="flex flex-wrap gap-3">
+            <CallButton context={`مشروع اتحاد الملاك ${project.title}`} />
+            <ContactWhatsAppButton context={`مشروع اتحاد الملاك ${project.title}`} />
+            <WhatsAppButton message={message} label="احجز مقعدك" />
+          </div>
         </div>
         <div className="mt-10">
           <LeadForm

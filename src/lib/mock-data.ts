@@ -31,9 +31,3 @@ export const LATEST_LISTINGS: Listing[] = [
 ];
 
 // MOCK - replace with DB later
-export const STATS = [
-  { value: "500+", label: "عميل" },
-  { value: "320", label: "وحدة مباعة" },
-  { value: "12", label: "مركز مغطى" },
-  { value: "28", label: "مشروع اتحاد" },
-];

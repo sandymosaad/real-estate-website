@@ -12,6 +12,8 @@ import {
 import { formatArea, formatPrice } from "@/lib/format";
 import { decodeRouteSlug } from "@/lib/slug";
 import { getPremiumAmount, isNoPremium } from "@/lib/transfer-listing";
+import { CallButton } from "@/components/contact/CallButton";
+import { ContactWhatsAppButton } from "@/components/contact/WhatsAppButton";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -41,9 +43,6 @@ export default async function TransferDetailsPage({ params }: PageProps) {
   if (!listing) notFound();
 
   const similarListings = await getSimilarTransferListings(listing);
-  const whatsappMessage = encodeURIComponent(
-    `عايز أعرف تفاصيل ${listing.title} - ${listing.slug}`,
-  );
   const remainingBalance =
     listing.monthlyInstallment * listing.remainingInstallments;
   const premiumAmount = getPremiumAmount(listing);
@@ -143,12 +142,10 @@ export default async function TransferDetailsPage({ params }: PageProps) {
                 <dd className="font-bold">{listing.sellerCompanyName}</dd>
               </div>
             </dl>
-            <a
-              href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? ""}?text=${whatsappMessage}`}
-              className="mt-6 block rounded-xl bg-primary p-3 text-center font-bold text-on-primary"
-            >
-              كلمنا على واتساب
-            </a>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <CallButton context={`تنازل الشقة ${listing.title}`} />
+              <ContactWhatsAppButton context={`تنازل الشقة ${listing.title}`} />
+            </div>
           </div>
         </div>
         <p className="mt-8 rounded-xl border border-border bg-primary-light p-4 text-sm leading-7 text-ink">

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Eye, HandHeart, MapPinned, ShieldCheck, Target } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
+import { aboutContent } from "@/content/about";
+import { SectionCTA } from "@/components/contact/SectionCTA";
 
 export const metadata: Metadata = {
   title: "قصتنا",
@@ -39,17 +41,17 @@ const teamMembers = [
   "فريق خدمة العملاء",
 ];
 
-// PLACEHOLDER DATES
+// PLACEHOLDER: replace with verified milestones when real dates are supplied.
 const milestones = [
   {
-    date: "2024",
-    title: "بدأت الفكرة",
-    description: "بدأنا نسأل إزاي نخلي البحث عن العقار أبسط.",
+    date: "بيانات لاحقًا",
+    title: "بداية الفكرة",
+    description: "هنضيف التفاصيل بعد اعتماد المعلومات الحقيقية.",
   },
   {
-    date: "2025",
-    title: "وسعنا نطاقنا",
-    description: "بدأنا نغطي مراكز أكتر في أسيوط.",
+    date: "بيانات لاحقًا",
+    title: "تطور الخدمة",
+    description: "هنضيف التفاصيل بعد اعتماد المعلومات الحقيقية.",
   },
   {
     date: "قريبًا",
@@ -63,13 +65,11 @@ export default function AboutPage() {
   return (
     <>
       <Section
-        title="قصتنا"
-        subtitle="بدأنا من سؤال بسيط: إزاي نساعد أهل أسيوط يلاقوا طريق أوضح لعقار مناسب؟"
+        title={aboutContent.title}
+        subtitle={aboutContent.subtitle}
       >
         <p className="max-w-3xl leading-8 text-muted">
-          الأراضي والشقق بقت تحدي كبير خصوصًا للشباب، وكتير من الناس
-          بتواجه معلومات ناقصة أو اختيارات مش واضحة. عشان كده أسسنا بيتك
-          أسيوط كمساحة تجمع الاختيارات وتشرحها بلغة بسيطة وقريبة.
+          {aboutContent.story}
         </p>
       </Section>
       <Section>
@@ -104,6 +104,7 @@ export default function AboutPage() {
         </div>
       </Section>
       <Section title="فريقنا">
+        <p className="mb-5 text-muted">{aboutContent.placeholderNote}</p>
         <div className="grid gap-5 md:grid-cols-3">
           {teamMembers.map((member) => (
             <div
@@ -143,12 +144,13 @@ export default function AboutPage() {
         <Link href="/contact" className="mt-6 inline-flex">
           <Button
             variant="outline"
-            className="border-white text-on-primary hover:bg-surface/10"
+            className="border-white text-white hover:bg-surface/10"
           >
             تواصل معانا
           </Button>
         </Link>
       </section>
+      <SectionCTA context="التعرف على بيتك أسيوط" />
     </>
   );
 }

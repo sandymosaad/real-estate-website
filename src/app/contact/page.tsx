@@ -1,37 +1,40 @@
 import type { Metadata } from "next";
-import { Clock3, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Clock3, MapPin, Phone } from "lucide-react";
 import { LeadForm } from "@/components/forms/LeadForm";
-import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
-import { WHATSAPP_DEFAULT_NUMBER } from "@/lib/constants";
+import { CallButton } from "@/components/contact/CallButton";
+import { ContactWhatsAppButton } from "@/components/contact/WhatsAppButton";
+import { contactContent } from "@/content/contact";
+import { CONTACT_REPLY_TIME, getFormattedPhone } from "@/lib/contact";
 
 export const metadata: Metadata = {
-  title: "تواصل معانا",
-  description: "كلم بيتك أسيوط واسأل عن الشقق ومشاريع اتحاد الملاك.",
+  title: contactContent.title,
+  description: contactContent.subtitle,
 };
-
-const phone = process.env.NEXT_PUBLIC_PHONE || "01000000000";
-const whatsapp =
-  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || WHATSAPP_DEFAULT_NUMBER;
 
 /** Provides the contact form and the available communication channels. */
 export default function ContactPage() {
   return (
     <Section
-      title="تواصل معانا"
-      subtitle="قولنا محتاج إيه وهنرجعلك بأقرب وقت."
+      title={contactContent.title}
+      subtitle={contactContent.subtitle}
     >
       <div className="grid gap-8 lg:grid-cols-2">
+        <div className="order-first flex flex-wrap gap-3 lg:col-span-2">
+          <CallButton context="صفحة التواصل" />
+          <ContactWhatsAppButton context="صفحة التواصل" />
+        </div>
         <LeadForm
           defaultInterestType="استفسار عام"
-          title="ابعتلنا طلبك"
+          title={contactContent.formTitle}
+          submitLabel="ابعتلنا طلبك"
         />
         <div className="space-y-5">
           <div className="rounded-xl border border-border p-6">
             <h2 className="text-2xl font-bold text-ink">بيانات التواصل</h2>
             <div className="mt-5 space-y-4 text-muted">
               <a
-                href={`tel:${phone}`}
+                href={`tel:${getFormattedPhone()}`}
                 className="flex items-center gap-3"
               >
                 <Phone
@@ -39,18 +42,7 @@ export default function ContactPage() {
                   className="text-primary"
                   aria-hidden="true"
                 />
-                {phone}
-              </a>
-              <a
-                href={`https://wa.me/${whatsapp}`}
-                className="flex items-center gap-3"
-              >
-                <MessageCircle
-                  size={20}
-                  className="text-primary"
-                  aria-hidden="true"
-                />
-                واتساب
+                {getFormattedPhone()}
               </a>
               <p className="flex items-center gap-3">
                 <MapPin
@@ -58,7 +50,7 @@ export default function ContactPage() {
                   className="text-primary"
                   aria-hidden="true"
                 />
-                العنوان: أسيوط - العنوان هيتحدد قريبًا
+                العنوان: أسيوط - {contactContent.addressPlaceholder}
               </p>
               <p className="flex items-center gap-3">
                 <Clock3
@@ -69,12 +61,7 @@ export default function ContactPage() {
                 مواعيد العمل: من السبت للخميس، 10 ص لـ 6 م
               </p>
             </div>
-            <Button
-              href={`https://wa.me/${whatsapp}`}
-              className="mt-6"
-            >
-              كلمنا واتساب
-            </Button>
+            <p className="mt-6 text-sm text-muted">هنراجع طلبك ونتواصل معاك {CONTACT_REPLY_TIME}.</p>
           </div>
           <div className="h-56 rounded-xl bg-primary-light p-6 text-center text-muted">
             <MapPin

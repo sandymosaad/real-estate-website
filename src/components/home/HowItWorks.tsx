@@ -1,14 +1,14 @@
 import { ArrowDown, ArrowLeft } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { RevealList } from "@/components/animation/RevealList";
-
-const steps = ["تتواصل معانا", "نعاين", "نتفق", "نوثّق"];
+import { homeContent } from "@/content/home";
+import { SectionCTA } from "@/components/contact/SectionCTA";
 
 export function HowItWorks() {
   return (
     <Section title="هنمشي معاك خطوة بخطوة">
       <RevealList className="grid gap-6 md:grid-cols-4">
-        {steps.map((step, index) => (
+        {homeContent.steps.map((step, index) => (
           <div
             key={step}
             className="relative flex items-center gap-4 md:block md:text-center"
@@ -17,7 +17,7 @@ export function HowItWorks() {
               {index + 1}
             </span>
             <h3 className="font-bold text-ink">{step}</h3>
-            {index < steps.length - 1 && (
+            {index < homeContent.steps.length - 1 && (
               <span className="absolute start-5 top-14 text-primary md:-end-5 md:start-auto md:top-4">
                 <ArrowDown
                   className="md:hidden"
@@ -34,6 +34,7 @@ export function HowItWorks() {
           </div>
         ))}
       </RevealList>
+      <SectionCTA context="خطوات شراء العقار" />
     </Section>
   );
 }

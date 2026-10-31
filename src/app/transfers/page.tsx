@@ -13,6 +13,9 @@ import {
 } from "@/lib/constants";
 import { getTransferListings } from "@/lib/data/transfer-listings";
 import { transferPageContent } from "@/content/transfers";
+import { SectionCTA } from "@/components/contact/SectionCTA";
+import { CallButton } from "@/components/contact/CallButton";
+import { ContactWhatsAppButton } from "@/components/contact/WhatsAppButton";
 
 export const metadata: Metadata = {
   title: "بيع وحدتك بالتقسيط بدون أوفر",
@@ -70,6 +73,10 @@ export default async function TransfersPage({ searchParams }: PageProps) {
         title={transferPageContent.hero.title}
         subtitle={transferPageContent.hero.subtitle}
       >
+        <div className="mb-6 flex flex-wrap gap-3">
+          <CallButton context="تنازل شقق بالتقسيط" />
+          <ContactWhatsAppButton context="تنازل شقق بالتقسيط" />
+        </div>
         <div className="grid gap-4 md:grid-cols-2">
           <a
             href="#owner-form"
@@ -155,6 +162,7 @@ export default async function TransfersPage({ searchParams }: PageProps) {
           {transferPageContent.sections.legalNotice}
         </p>
       </Section>
+      <SectionCTA context="تنازل شقق بالتقسيط" />
       <Section title={transferPageContent.sections.listingsTitle} id="listings">
         <TransferFilters />
         {listings.length === 0 ? (

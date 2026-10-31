@@ -6,12 +6,12 @@ import { Button } from "@/components/ui/Button";
 import {
   ASSIUT_DISTRICTS,
   LEAD_INTEREST_TYPES,
-  WHATSAPP_DEFAULT_NUMBER,
   type District,
   type LeadInterestType,
 } from "@/lib/constants";
 import { FormField } from "./FormField";
 import { useLeadForm } from "./useLeadForm";
+import { getWhatsAppLink } from "@/lib/contact";
 
 type LeadFormProps = {
   defaultInterestType: LeadInterestType;
@@ -78,9 +78,6 @@ export function LeadForm({
   }
 
   if (form.status === "success") {
-    const whatsapp =
-      process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || WHATSAPP_DEFAULT_NUMBER;
-
     return (
       <div
         aria-live="polite"
@@ -89,7 +86,7 @@ export function LeadForm({
         <h2 className="text-xl font-bold text-ink">تمام، شكرًا ليك!</h2>
         <p className="mt-2 text-muted">{form.message}</p>
         <a
-          href={`https://wa.me/${whatsapp}`}
+          href={getWhatsAppLink()}
           className="mt-4 inline-flex items-center font-semibold text-primary"
         >
           <MessageCircle
