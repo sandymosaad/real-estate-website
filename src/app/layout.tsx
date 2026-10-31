@@ -8,6 +8,7 @@ import { Header } from "@/components/layout/Header";
 import { StickyContactBar } from "@/components/contact/StickyContactBar";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { themeScript } from "@/components/theme/theme-script";
+import { SITE_NAME, SITE_NAME_EN, SITE_TAGLINE } from "@/lib/constants";
 
 const cairo = Cairo({
   variable: "--font-cairo",
@@ -17,12 +18,13 @@ const cairo = Cairo({
 
 export const metadata: Metadata = {
   title: {
-    default: "بيتك أسيوط - عقارات في أسيوط",
-    template: "%s | بيتك أسيوط",
+    default: `${SITE_NAME} - عقارات في أسيوط`,
+    template: `%s | ${SITE_NAME}`,
   },
-  description: "بيتك أسيوط، دليلك لعقارات وشقق للبيع في أسيوط.",
+  description: SITE_TAGLINE,
   openGraph: {
     locale: "ar_EG",
+    siteName: SITE_NAME_EN,
   },
 };
 

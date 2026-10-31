@@ -3,6 +3,7 @@ import Link from "next/link";
 import { destroySession } from "@/lib/admin/session";
 import { getSession } from "@/lib/admin/session";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { SITE_NAME } from "@/lib/constants";
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
@@ -27,7 +28,7 @@ export default async function AdminLayout({
   return (
     <div dir="rtl" className="min-h-screen bg-background text-ink">
       <aside className="fixed inset-y-0 start-0 hidden w-64 border-e border-border bg-surface p-5 text-ink lg:block">
-        <h1 className="text-xl font-bold">إدارة بيتك أسيوط</h1>
+        <h1 className="text-xl font-bold">إدارة {SITE_NAME}</h1>
         <div className="mt-4"><ThemeToggle /></div>
         <nav className="mt-8 space-y-2">
           {adminLinks.map(([label, href]) => <Link key={href} href={href} className="block rounded-lg p-3 hover:bg-surface">{label}</Link>)}

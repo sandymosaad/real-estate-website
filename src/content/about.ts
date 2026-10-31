@@ -12,12 +12,14 @@ export type AboutMilestone = {
   description: string;
 };
 
+import { SITE_NAME } from "@/lib/constants";
+
 export const aboutContent = {
   metadataTitle: "قصتنا",
-  metadataDescription: "اتعرف على قصة بيتك أسيوط ورؤيتنا لمساعدة أهل أسيوط في رحلتهم العقارية.",
-  ctaContext: "التعرف على بيتك أسيوط",
+  metadataDescription: `اتعرف على قصة ${SITE_NAME} ورؤيتنا لمساعدة أهل أسيوط في رحلتهم العقارية.`,
+  ctaContext: `التعرف على ${SITE_NAME}`,
   title: "إحنا موجودين عشان نخلي قرار العقار أوضح",
-  subtitle: "بيتك أسيوط بدأ من احتياج حقيقي: معلومات مفهومة وتواصل أسهل لأهل أسيوط.",
+  subtitle: `${SITE_NAME} بدأ من احتياج حقيقي: معلومات مفهومة وتواصل أسهل لأهل أسيوط.`,
   story: "نعرف إن شراء شقة أو الدخول في مشروع مش قرار بسيط. عشان كده بنجمع الاختيارات ونشرحها بلغة قريبة، ونقول لك إيه اللي نعرفه وإيه اللي لازم تراجعه بنفسك.",
   mission: {
     title: "مهمتنا",

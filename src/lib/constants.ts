@@ -1,4 +1,6 @@
-export const SITE_NAME = "بيتك أسيوط";
+export const SITE_NAME = "طوبة";
+export const SITE_NAME_EN = "Touba Assiut";
+export const SITE_TAGLINE = "طوبة طوبة… بنبني بيتك في أسيوط";
 export const THEME_STORAGE_KEY = "assiut-realestate-theme";
 export const THEME_MODES = ["light", "dark", "system"] as const;
 export type ThemeMode = (typeof THEME_MODES)[number];

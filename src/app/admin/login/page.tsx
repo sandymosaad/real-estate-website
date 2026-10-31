@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_NAME } from "@/lib/constants";
 import { loginAdmin } from "./actions";
 
 export const metadata: Metadata = {
@@ -27,7 +28,7 @@ export default async function AdminLoginPage({
         action={loginAdmin}
         className="w-full max-w-md rounded-xl bg-surface p-8 shadow"
       >
-        <h1 className="text-2xl font-bold text-ink">دخول لوحة الإدارة</h1>
+        <h1 className="text-2xl font-bold text-ink">دخول لوحة إدارة {SITE_NAME}</h1>
         {error && (
           <p className="mt-4 rounded-lg bg-primary-light p-3 text-error">
             {error}
