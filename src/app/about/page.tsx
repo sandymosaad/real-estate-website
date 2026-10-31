@@ -1,156 +1,58 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Eye, HandHeart, MapPinned, ShieldCheck, Target } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { SectionCTA } from "@/components/contact/SectionCTA";
+import { Timeline } from "@/components/about/Timeline";
+import { TeamSection } from "@/components/about/TeamSection";
 import { Section } from "@/components/ui/Section";
 import { aboutContent } from "@/content/about";
-import { SectionCTA } from "@/components/contact/SectionCTA";
 
 export const metadata: Metadata = {
-  title: "قصتنا",
-  description: "اتعرف على قصة بيتك أسيوط ورؤيتنا لمساعدة أهل أسيوط في رحلتهم العقارية.",
+  title: aboutContent.metadataTitle,
+  description: aboutContent.metadataDescription,
 };
 
-const values = [
-  {
-    title: "الوضوح",
-    description: "نشرح التفاصيل ببساطة ومن غير كلام كبير.",
-    icon: Eye,
-  },
-  {
-    title: "الأمانة",
-    description: "نقول اللي نعرفه ونكون صريحين في كل خطوة.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "القرب",
-    description: "فاهمين مراكز أسيوط واحتياجات أهلها.",
-    icon: MapPinned,
-  },
-  {
-    title: "المساندة",
-    description: "نفضل جنبك من أول سؤال لحد ما الصورة توضح.",
-    icon: HandHeart,
-  },
-];
+const valueIcons = [Eye, ShieldCheck, MapPinned, HandHeart];
 
-// PLACEHOLDER
-const teamMembers = [
-  "فريق البحث والتنسيق",
-  "فريق متابعة العقارات",
-  "فريق خدمة العملاء",
-];
-
-// PLACEHOLDER: replace with verified milestones when real dates are supplied.
-const milestones = [
-  {
-    date: "بيانات لاحقًا",
-    title: "بداية الفكرة",
-    description: "هنضيف التفاصيل بعد اعتماد المعلومات الحقيقية.",
-  },
-  {
-    date: "بيانات لاحقًا",
-    title: "تطور الخدمة",
-    description: "هنضيف التفاصيل بعد اعتماد المعلومات الحقيقية.",
-  },
-  {
-    date: "قريبًا",
-    title: "خطوتنا الجاية",
-    description: "نكمّل بناء تجربة أوضح لكل عميل.",
-  },
-];
-
-/** Presents the story, values, and direction of the Assiut real-estate service. */
+/** Presents the story, values, team roles, and milestones of the public service. */
 export default function AboutPage() {
   return (
     <>
-      <Section
-        title={aboutContent.title}
-        subtitle={aboutContent.subtitle}
-      >
-        <p className="max-w-3xl leading-8 text-muted">
-          {aboutContent.story}
-        </p>
+      <Section title={aboutContent.title} subtitle={aboutContent.subtitle}>
+        <p className="max-w-3xl leading-8 text-muted">{aboutContent.story}</p>
       </Section>
       <Section>
         <div className="grid gap-5 md:grid-cols-2">
           <article className="rounded-xl bg-primary-light p-6">
             <Target className="text-primary" size={30} aria-hidden="true" />
-            <h2 className="mt-4 text-2xl font-bold text-ink">مهمتنا</h2>
-            <p className="mt-3 leading-7 text-muted">
-              نساعدك تفهم اختياراتك العقارية في أسيوط وتوصل لقرار مناسب ليك،
-              من غير ضغط أو وعود مبالغ فيها.
-            </p>
+            <h2 className="mt-4 text-2xl font-bold text-ink">{aboutContent.mission.title}</h2>
+            <p className="mt-3 leading-7 text-muted">{aboutContent.mission.description}</p>
           </article>
           <article className="rounded-xl border border-border p-6">
             <Eye className="text-primary" size={30} aria-hidden="true" />
-            <h2 className="mt-4 text-2xl font-bold text-ink">رؤيتنا</h2>
-            <p className="mt-3 leading-7 text-muted">
-              نبني تجربة محلية موثوقة تخلي الوصول للمعلومة والتواصل مع أهل
-              الخبرة أسهل.
-            </p>
+            <h2 className="mt-4 text-2xl font-bold text-ink">{aboutContent.vision.title}</h2>
+            <p className="mt-3 leading-7 text-muted">{aboutContent.vision.description}</p>
           </article>
         </div>
       </Section>
-      <Section title="قيمنا">
+      <Section title={aboutContent.valuesTitle}>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {values.map(({ title, description, icon: Icon }) => (
-            <div key={title}>
-              <Icon className="text-primary" size={28} aria-hidden="true" />
-              <h2 className="mt-3 font-bold text-ink">{title}</h2>
-              <p className="mt-2 leading-6 text-muted">{description}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-      <Section title="فريقنا">
-        <p className="mb-5 text-muted">{aboutContent.placeholderNote}</p>
-        <div className="grid gap-5 md:grid-cols-3">
-          {teamMembers.map((member) => (
-            <div
-              key={member}
-              className="rounded-xl border border-border bg-primary-light p-6 text-center"
-            >
-              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-surface text-sm text-muted">
-                صورة
+          {aboutContent.values.map(({ title, description }, index) => {
+            const Icon = valueIcons[index];
+            return (
+              <div key={title}>
+                <Icon className="text-primary" size={28} aria-hidden="true" />
+                <h2 className="mt-3 font-bold text-ink">{title}</h2>
+                <p className="mt-2 leading-6 text-muted">{description}</p>
               </div>
-              <h2 className="mt-4 font-bold text-ink">{member}</h2>
-              <p className="mt-2 text-sm text-muted">فريق بيتك أسيوط</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </Section>
-      <Section title="محطات في الطريق">
-        <div className="grid gap-5 md:grid-cols-3">
-          {milestones.map((milestone) => (
-            <div
-              key={milestone.date}
-              className="border-s-2 border-primary ps-5"
-            >
-              <p className="font-bold text-primary">{milestone.date}</p>
-              <h2 className="mt-2 font-bold text-ink">{milestone.title}</h2>
-              <p className="mt-2 leading-6 text-muted">
-                {milestone.description}
-              </p>
-            </div>
-          ))}
-        </div>
+      <TeamSection />
+      <Section title={aboutContent.milestonesTitle}>
+        <Timeline milestones={aboutContent.milestones} />
       </Section>
-      <section className="bg-primary py-14 text-center text-on-primary">
-        <h2 className="text-3xl font-bold">خلينا نبدأ من احتياجك</h2>
-        <p className="mx-auto mt-3 max-w-xl text-on-primary/80">
-          احكيلنا بتدور على إيه، وهنساعدك تشوف الصورة أوضح.
-        </p>
-        <Link href="/contact" className="mt-6 inline-flex">
-          <Button
-            variant="outline"
-            className="border-white text-white hover:bg-surface/10"
-          >
-            تواصل معانا
-          </Button>
-        </Link>
-      </section>
-      <SectionCTA context="التعرف على بيتك أسيوط" />
+      <SectionCTA context={aboutContent.ctaContext} />
     </>
   );
 }
