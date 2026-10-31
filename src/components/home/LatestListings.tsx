@@ -5,6 +5,7 @@ import { getApartments } from "@/lib/data/apartments";
 import { getUnionProjects } from "@/lib/data/union-projects";
 import type { Listing } from "@/lib/mock-data";
 import { ListingCard } from "./ListingCard";
+import { RevealList } from "@/components/animation/RevealList";
 
 /** Loads a small mixed selection for the home page without exposing database errors. */
 export async function LatestListings() {
@@ -48,11 +49,11 @@ export async function LatestListings() {
       title="أحدث الاختيارات"
       subtitle="اختيارات مبدئية من شقق ومشاريع اتحاد ملاك في أسيوط."
     >
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <RevealList className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {listings.map((listing) => (
           <ListingCard key={listing.id} listing={listing} />
         ))}
-      </div>
+      </RevealList>
       {listings.length === 0 && (
         <p className="rounded-xl border border-border p-8 text-center text-muted">
           الاختيارات الجديدة هتظهر هنا قريبًا.

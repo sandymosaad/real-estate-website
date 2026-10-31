@@ -10,14 +10,14 @@ import { getListingPath } from "@/lib/slug";
 export function UnionProjectCard({ project }: { project: UnionProject }) {
   const progress = (project.reservedSeats / project.totalSeats) * 100;
   return (
-    <article className="overflow-hidden rounded-xl border border-border bg-surface shadow-sm">
+    <article className="card-hover overflow-hidden rounded-xl border border-border bg-surface shadow-sm">
       <div className="relative h-44 bg-primary-light text-primary">
         <Image
           src={project.images?.[0] || DEFAULT_LISTING_IMAGE}
           alt={project.title}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover dark:brightness-90"
+          className="card-image object-cover dark:brightness-90"
         />
       </div>
       <div className="p-5">
@@ -26,7 +26,7 @@ export function UnionProjectCard({ project }: { project: UnionProject }) {
         <p className="mt-3 flex items-center gap-1 text-sm text-muted"><MapPin size={16} aria-hidden="true" />{project.district}</p>
         <p className="mt-3 flex items-center gap-1 text-sm text-muted"><Ruler size={16} aria-hidden="true" />{formatArea(project.landAreaSqm)}</p>
         <p className="mt-4 flex justify-between text-sm text-muted"><span>الشركاء</span><strong className="text-ink">{project.reservedSeats} من {project.totalSeats}</strong></p>
-        <span className="mt-1 block h-2 overflow-hidden rounded-full bg-primary-light"><span className="block h-full rounded-full bg-primary" style={{ width: `${progress}%` }} /></span>
+        <span className="mt-1 block h-2 overflow-hidden rounded-full bg-primary-light"><span className="progress-fill progress-fill-visible block h-full rounded-full bg-primary" style={{ width: `${progress}%` }} /></span>
         <p className="mt-4 text-lg font-bold text-primary">{formatPrice(project.totalProjectCost / project.totalSeats)} للمقعد</p>
         <Link
           href={getListingPath("union", project.slug)}

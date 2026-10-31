@@ -16,6 +16,7 @@
   --color-warning: var(--color-warning-value);
   --color-error: var(--color-error-value);
   --font-sans: var(--font-cairo);
+  --ease-site: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 :root {
@@ -64,5 +65,152 @@ body {
 @media (min-width: 768px) {
   .container {
     padding-inline: 2rem;
+  }
+
+  :root {
+    --animation-duration-fast: 200ms;
+    --animation-duration-base: 350ms;
+    --animation-duration-slow: 550ms;
+    --animation-duration-shimmer: 1200ms;
+    --animation-distance: 16px;
+    --animation-direction: 1;
+  }
+
+  .reveal {
+    opacity: 0;
+    transition:
+      opacity var(--animation-duration-slow) var(--ease-site),
+      transform var(--animation-duration-slow) var(--ease-site);
+    transition-delay: var(--animation-delay, 0ms);
+  }
+
+  .reveal-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal-fade-up { transform: translateY(var(--animation-distance)); }
+  .reveal-fade-in { transform: none; }
+  .reveal-slide-inline { transform: translateX(calc(var(--animation-direction) * var(--animation-distance))); }
+  .reveal-scale-in { transform: scale(0.97); }
+  .delay-0 { --animation-delay: 0ms; }
+  .delay-1 { --animation-delay: 80ms; }
+  .delay-2 { --animation-delay: 160ms; }
+  .delay-3 { --animation-delay: 240ms; }
+  .delay-4 { --animation-delay: 320ms; }
+  .delay-5 { --animation-delay: 400ms; }
+  .delay-6 { --animation-delay: 480ms; }
+  .delay-7 { --animation-delay: 560ms; }
+
+  .card-hover {
+    transition: transform var(--animation-duration-base) var(--ease-site), box-shadow var(--animation-duration-base) var(--ease-site);
+  }
+
+  .card-image {
+    transition: transform var(--animation-duration-slow) var(--ease-site);
+  }
+
+  .progress-fill {
+    transform: scaleX(0);
+    transform-origin: inline-start;
+    transition: transform var(--animation-duration-slow) var(--ease-site);
+  }
+
+  .progress-fill-visible {
+    transform: scaleX(1);
+  }
+
+  .faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--animation-duration-base) var(--ease-site);
+  }
+
+  .faq-answer-visible {
+    grid-template-rows: 1fr;
+  }
+
+  .faq-answer-content {
+    overflow: hidden;
+  }
+
+  .spinner {
+    animation: site-spin 700ms linear infinite;
+  }
+
+  .success-message {
+    animation: success-message var(--animation-duration-slow) var(--ease-site) both;
+  }
+
+  .field-error {
+    animation: field-error var(--animation-duration-fast) var(--ease-site) both;
+  }
+
+  .shimmer {
+    animation: site-shimmer var(--animation-duration-shimmer) var(--ease-site) infinite alternate;
+  }
+
+  .whatsapp-pulse {
+    isolation: isolate;
+  }
+
+  .whatsapp-pulse::before {
+    position: absolute;
+    z-index: -1;
+    inset: -4px;
+    border: 2px solid #25d366;
+    border-radius: 9999px;
+    content: "";
+    animation: whatsapp-pulse 1800ms var(--ease-site) 3;
+  }
+
+  @keyframes site-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes success-message {
+    from { opacity: 0; transform: translateY(var(--animation-distance)); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes field-error {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes site-shimmer {
+    from { opacity: 0.55; transform: scale(0.995); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes whatsapp-pulse {
+    0%, 100% { opacity: 0.35; transform: scale(0.95); }
+    60% { opacity: 0; transform: scale(1.2); }
+  }
+
+  @media (hover: hover) {
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgb(15 23 42 / 10%);
+    }
+    .card-hover:hover .card-image {
+      transform: scale(1.05);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 1ms !important;
+    }
+    .reveal, .reveal-visible {
+      opacity: 1;
+      transform: none;
+    }
+    .progress-fill, .progress-fill-visible {
+      transform: scaleX(1);
+    }
   }
 }

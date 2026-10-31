@@ -1,0 +1,9 @@
+export const ANIMATION_DURATION_FAST = 200;
+export const ANIMATION_DURATION_BASE = 350;
+export const ANIMATION_DURATION_SLOW = 550;
+export const ANIMATION_STAGGER_STEP = 80;
+export const ANIMATION_STAGGER_MAX = 600;
+export const ANIMATION_EASING = "cubic-bezier(0.22, 1, 0.36, 1)";
+export const ANIMATION_OBSERVER_THRESHOLD = 0.15;
+export const ANIMATION_COUNT_DURATION = 1200;
+

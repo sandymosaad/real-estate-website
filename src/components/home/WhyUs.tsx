@@ -1,5 +1,6 @@
 import { BadgeCheck, FileCheck2, Handshake, MapPinned } from "lucide-react";
 import { Section } from "@/components/ui/Section";
+import { RevealList } from "@/components/animation/RevealList";
 
 const features = [
   {
@@ -30,7 +31,7 @@ export function WhyUs() {
       title="ليه تختارنا؟"
       subtitle="بنخلي رحلة البحث عن عقارك أبسط وأوضح."
     >
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <RevealList className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {features.map(({ title, description, icon: Icon }) => (
           <div key={title}>
             <Icon className="text-primary" size={28} aria-hidden="true" />
@@ -38,7 +39,7 @@ export function WhyUs() {
             <p className="mt-2 text-sm leading-6 text-muted">{description}</p>
           </div>
         ))}
-      </div>
+      </RevealList>
     </Section>
   );
 }

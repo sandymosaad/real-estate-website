@@ -84,7 +84,7 @@ export function LeadForm({
     return (
       <div
         aria-live="polite"
-        className="rounded-xl bg-primary-light p-6 text-center"
+        className="success-message rounded-xl bg-primary-light p-6 text-center"
       >
         <h2 className="text-xl font-bold text-ink">تمام، شكرًا ليك!</h2>
         <p className="mt-2 text-muted">{form.message}</p>
@@ -276,14 +276,19 @@ export function LeadForm({
         />
       </div>
       {form.status === "error" && (
-        <p className="mt-4 text-sm text-error">{form.message}</p>
+        <p className="field-error mt-4 text-sm text-error">{form.message}</p>
       )}
       <Button
         type="submit"
         className="mt-6"
         disabled={form.status === "submitting"}
       >
-        {form.status === "submitting" ? "جاري الإرسال..." : submitLabel}
+        {form.status === "submitting" ? (
+          <>
+            <span className="spinner me-2 inline-block h-4 w-4 rounded-full border-2 border-current border-t-transparent" aria-hidden="true" />
+            جاري الإرسال...
+          </>
+        ) : submitLabel}
       </Button>
     </form>
   );

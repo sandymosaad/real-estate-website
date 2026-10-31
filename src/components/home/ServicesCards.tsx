@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft, Building2, HandCoins, UsersRound } from "lucide-react";
 import { Container } from "@/components/ui/Container";
+import { RevealList } from "@/components/animation/RevealList";
 
 export function ServicesCards() {
   const services = [
@@ -28,11 +29,11 @@ export function ServicesCards() {
   return (
     <section className="py-12 md:py-16">
       <Container>
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <RevealList className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {services.map(({ title, description, href, icon: Icon }) => (
             <article
               key={title}
-              className="flex min-h-64 flex-col rounded-xl border border-border bg-surface p-6 shadow-sm"
+              className="card-hover flex min-h-64 flex-col rounded-xl border border-border bg-surface p-6 shadow-sm"
             >
               <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-primary-light text-primary">
                 <Icon size={25} aria-hidden="true" />
@@ -50,7 +51,7 @@ export function ServicesCards() {
               </Link>
             </article>
           ))}
-        </div>
+        </RevealList>
       </Container>
     </section>
   );

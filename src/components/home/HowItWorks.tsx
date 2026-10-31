@@ -1,12 +1,13 @@
 import { ArrowDown, ArrowLeft } from "lucide-react";
 import { Section } from "@/components/ui/Section";
+import { RevealList } from "@/components/animation/RevealList";
 
 const steps = ["تتواصل معانا", "نعاين", "نتفق", "نوثّق"];
 
 export function HowItWorks() {
   return (
     <Section title="هنمشي معاك خطوة بخطوة">
-      <div className="grid gap-6 md:grid-cols-4">
+      <RevealList className="grid gap-6 md:grid-cols-4">
         {steps.map((step, index) => (
           <div
             key={step}
@@ -32,7 +33,7 @@ export function HowItWorks() {
             )}
           </div>
         ))}
-      </div>
+      </RevealList>
     </Section>
   );
 }

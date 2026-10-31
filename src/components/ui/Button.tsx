@@ -18,7 +18,7 @@ const variants = {
 const sizes = { sm: "px-3 py-2 text-sm", md: "px-4 py-2.5 text-sm", lg: "px-5 py-3" };
 
 export function Button({ className = "", variant = "primary", size = "md", href, ...props }: ButtonProps) {
-  const classes = `inline-flex items-center justify-center rounded-xl font-semibold transition-colors ${variants[variant]} ${sizes[size]} ${className}`.trim();
+  const classes = `inline-flex items-center justify-center rounded-xl font-semibold transition-[color,background-color,border-color,transform] duration-200 ease-site active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${variants[variant]} ${sizes[size]} ${className}`.trim();
   if (href) return <a className={classes} href={href} {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)} />;
   return <button className={classes} {...(props as ButtonHTMLAttributes<HTMLButtonElement>)} />;
 }

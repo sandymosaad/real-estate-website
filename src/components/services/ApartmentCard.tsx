@@ -9,14 +9,14 @@ import { getListingPath } from "@/lib/slug";
 /** Presents an apartment result with only the information needed for comparison. */
 export function ApartmentCard({ apartment }: { apartment: Apartment }) {
   return (
-    <article className="overflow-hidden rounded-xl border border-border bg-surface shadow-sm">
+    <article className="card-hover overflow-hidden rounded-xl border border-border bg-surface shadow-sm">
       <div className="relative h-44 bg-primary-light text-primary">
         <Image
           src={apartment.images?.[0] || DEFAULT_LISTING_IMAGE}
           alt={apartment.title}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover dark:brightness-90"
+          className="card-image object-cover dark:brightness-90"
         />
       </div>
       <div className="p-5">

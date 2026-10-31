@@ -5,6 +5,7 @@ import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { ASSIUT_DISTRICTS } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/animation/Reveal";
 
 export function QuickSearch() {
   const router = useRouter();
@@ -22,6 +23,7 @@ export function QuickSearch() {
 
   return (
     <div className="relative z-10 -mt-8 px-4 md:-mt-12">
+      <Reveal variant="fade-up">
       <form
         onSubmit={submit}
         className="mx-auto grid max-w-6xl gap-3 rounded-xl border border-border bg-surface p-4 shadow-xl md:grid-cols-4 md:p-5"
@@ -67,6 +69,7 @@ export function QuickSearch() {
           ابحث
         </Button>
       </form>
+      </Reveal>
     </div>
   );
 }

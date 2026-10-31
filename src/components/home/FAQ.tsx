@@ -27,9 +27,11 @@ export function FAQ() {
           />
         </button>
 
-        {open === index && <p className="px-5 pb-5 leading-7 text-muted">
-          {answer}
-        </p>}
+        <div className={`faq-answer ${open === index ? "faq-answer-visible" : ""}`}>
+          <div className="faq-answer-content">
+            <p className="px-5 pb-5 leading-7 text-muted">{answer}</p>
+          </div>
+        </div>
       </div>)}
     
     

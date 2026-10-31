@@ -13,14 +13,14 @@ export function ListingCard({ listing }: { listing: Listing }) {
       : 0;
 
   return (
-    <article className="overflow-hidden rounded-xl border border-border bg-surface shadow-sm">
+    <article className="card-hover overflow-hidden rounded-xl border border-border bg-surface shadow-sm">
       <div className="relative h-40 bg-primary-light text-primary">
         <Image
           src={listing.image || DEFAULT_LISTING_IMAGE}
           alt={listing.title}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover dark:brightness-90"
+          className="card-image object-cover dark:brightness-90"
         />
       </div>
       <div className="p-5">

@@ -1,13 +1,14 @@
 import { Quote } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import type { Testimonial } from "@/models/Testimonial";
+import { RevealList } from "@/components/animation/RevealList";
 
 export function Testimonials({ testimonials }: { testimonials: Testimonial[] }) {
   if (testimonials.length === 0) return null;
 
   return (
     <Section title="كلام من ناس جربتنا">
-      <div className="grid gap-5 md:grid-cols-3">
+      <RevealList className="grid gap-5 md:grid-cols-3">
         {testimonials.map((item) => (
           <article
             key={item.name}
@@ -23,7 +24,7 @@ export function Testimonials({ testimonials }: { testimonials: Testimonial[] }) 
             </div>
           </article>
         ))}
-      </div>
+      </RevealList>
     </Section>
   );
 }
