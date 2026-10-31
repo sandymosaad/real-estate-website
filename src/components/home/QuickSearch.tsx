@@ -24,14 +24,14 @@ export function QuickSearch() {
     <div className="relative z-10 -mt-8 px-4 md:-mt-12">
       <form
         onSubmit={submit}
-        className="mx-auto grid max-w-6xl gap-3 rounded-xl border border-border bg-white p-4 shadow-xl md:grid-cols-4 md:p-5"
+        className="mx-auto grid max-w-6xl gap-3 rounded-xl border border-border bg-surface p-4 shadow-xl md:grid-cols-4 md:p-5"
       >
         <label className="text-sm font-semibold text-ink">
           المركز
           <select
             value={district}
             onChange={(event) => setDistrict(event.target.value)}
-            className="mt-2 w-full rounded-xl border border-border bg-white p-3 font-normal outline-none focus:border-primary"
+            className="mt-2 w-full rounded-xl border border-border bg-surface p-3 font-normal outline-none focus:border-primary"
           >
             {ASSIUT_DISTRICTS.map((item) => (
               <option key={item}>{item}</option>
@@ -43,7 +43,7 @@ export function QuickSearch() {
           <select
             value={type}
             onChange={(event) => setType(event.target.value)}
-            className="mt-2 w-full rounded-xl border border-border bg-white p-3 font-normal outline-none focus:border-primary"
+            className="mt-2 w-full rounded-xl border border-border bg-surface p-3 font-normal outline-none focus:border-primary"
           >
             <option value="apartment">شقة</option>
             <option value="union">اتحاد ملاك</option>
@@ -54,7 +54,7 @@ export function QuickSearch() {
           <select
             value={budget}
             onChange={(event) => setBudget(event.target.value)}
-            className="mt-2 w-full rounded-xl border border-border bg-white p-3 font-normal outline-none focus:border-primary"
+            className="mt-2 w-full rounded-xl border border-border bg-surface p-3 font-normal outline-none focus:border-primary"
           >
             <option value="all">كل الميزانيات</option>
             <option value="under-1000000">أقل من مليون</option>

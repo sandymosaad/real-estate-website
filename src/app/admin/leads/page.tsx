@@ -33,14 +33,14 @@ export default async function AdminLeadsPage({ searchParams }: LeadsPageProps) {
     <section>
       <div className="flex flex-wrap items-center justify-between gap-4">
         <h1 className="text-3xl font-bold">الطلبات</h1>
-        <Link href="/api/admin/leads/export" className="rounded-xl bg-primary px-4 py-3 font-bold text-white">تصدير CSV</Link>
+        <Link href="/api/admin/leads/export" className="rounded-xl bg-primary px-4 py-3 font-bold text-on-primary">تصدير CSV</Link>
       </div>
-      <form className="mt-6 grid gap-3 rounded-xl bg-white p-4 sm:grid-cols-3">
-        <input name="search" defaultValue={search} placeholder="ابحث بالاسم أو الموبايل" className="rounded-xl border p-3" />
-        <select name="status" defaultValue={status} className="rounded-xl border p-3"><option value="">كل الحالات</option><option>جديد</option><option>تم التواصل</option><option>مغلق</option></select>
-        <button className="rounded-xl bg-slate-900 p-3 font-bold text-white">بحث</button>
+      <form className="mt-6 grid gap-3 rounded-xl bg-surface p-4 sm:grid-cols-3">
+        <input name="search" defaultValue={search} placeholder="ابحث بالاسم أو الموبايل" className="rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary" />
+        <select name="status" defaultValue={status} className="rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"><option value="">كل الحالات</option><option>جديد</option><option>تم التواصل</option><option>مغلق</option></select>
+        <button className="rounded-xl bg-surface p-3 font-bold text-on-primary">بحث</button>
       </form>
-      <div className="mt-6 overflow-x-auto rounded-xl bg-white shadow-sm">
+      <div className="mt-6 overflow-x-auto rounded-xl bg-surface shadow-sm">
         <table className="w-full min-w-[900px] text-sm">
           <thead>
             <tr className="border-b">
@@ -61,7 +61,7 @@ export default async function AdminLeadsPage({ searchParams }: LeadsPageProps) {
                 <td className="p-4">{lead.fullName}</td>
                 <td className="p-4">{lead.phone}</td>
                 <td className="p-4">{lead.interestType}</td>
-                <td className="max-w-xs whitespace-pre-wrap p-4 leading-6 text-slate-600">
+                <td className="max-w-xs whitespace-pre-wrap p-4 leading-6 text-muted">
                   {lead.message || "مفيش رسالة"}
                 </td>
                 <td className="p-4">
@@ -72,7 +72,7 @@ export default async function AdminLeadsPage({ searchParams }: LeadsPageProps) {
                       "تم التواصل",
                     )}
                   >
-                    <button className="rounded-lg bg-amber-100 px-3 py-2">
+                    <button className="rounded-lg bg-primary-light px-3 py-2">
                       {lead.status}
                     </button>
                   </form>

@@ -12,7 +12,7 @@ export function HowItWorks() {
             key={step}
             className="relative flex items-center gap-4 md:block md:text-center"
           >
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-bold text-white">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-bold text-on-primary">
               {index + 1}
             </span>
             <h3 className="font-bold text-ink">{step}</h3>

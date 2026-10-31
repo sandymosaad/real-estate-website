@@ -10,14 +10,14 @@ import { getListingPath } from "@/lib/slug";
 export function UnionProjectCard({ project }: { project: UnionProject }) {
   const progress = (project.reservedSeats / project.totalSeats) * 100;
   return (
-    <article className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
+    <article className="overflow-hidden rounded-xl border border-border bg-surface shadow-sm">
       <div className="relative h-44 bg-primary-light text-primary">
         <Image
           src={project.images?.[0] || DEFAULT_LISTING_IMAGE}
           alt={project.title}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover"
+          className="object-cover dark:brightness-90"
         />
       </div>
       <div className="p-5">

@@ -14,14 +14,14 @@ export function TransferListingCard({
   listing: TransferListing;
 }) {
   return (
-    <article className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
+    <article className="overflow-hidden rounded-xl border border-border bg-surface shadow-sm">
       <div className="relative h-44 bg-primary-light text-primary">
         <Image
           src={listing.images?.[0] || DEFAULT_LISTING_IMAGE}
           alt={listing.title}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover"
+          className="object-cover dark:brightness-90"
         />
       </div>
       <div className="p-5">
@@ -32,12 +32,12 @@ export function TransferListingCard({
               {listing.listingStatus}
             </span>
             {isNoPremium(listing) && (
-              <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
+              <span className="rounded-full bg-primary-light px-3 py-1 text-xs font-semibold text-success">
                 بدون أوفر
               </span>
             )}
             {listing.isDocumentsVerified && (
-              <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
+              <span className="rounded-full bg-primary-light px-3 py-1 text-xs font-semibold text-primary">
                 مستندات متراجعة
               </span>
             )}
@@ -59,7 +59,7 @@ export function TransferListingCard({
           {formatPrice(listing.transferAmountRequested)} المطلوب للتنازل
         </p>
         {!isNoPremium(listing) && (
-          <p className="mt-1 text-sm text-amber-700">
+          <p className="mt-1 text-sm text-warning">
             أوفر: {formatPrice(getPremiumAmount(listing))}
           </p>
         )}

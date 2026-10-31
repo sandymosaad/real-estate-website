@@ -56,12 +56,12 @@ export default async function TransferDetailsPage({ params }: PageProps) {
       >
         <div className="mb-6 flex flex-wrap gap-2">
           {isNoPremium(listing) && (
-            <span className="rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700">
+            <span className="rounded-full bg-primary-light px-3 py-1 text-sm font-semibold text-success">
               بدون أوفر
             </span>
           )}
           {listing.isDocumentsVerified && (
-            <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-700">
+            <span className="rounded-full bg-primary-light px-3 py-1 text-sm font-semibold text-primary">
               مستندات متراجعة
             </span>
           )}
@@ -89,7 +89,7 @@ export default async function TransferDetailsPage({ params }: PageProps) {
               ))}
             </div>
           </div>
-          <div className="rounded-xl border border-border bg-white p-6 shadow-sm">
+          <div className="rounded-xl border border-border bg-surface p-6 shadow-sm">
             <h2 className="text-xl font-bold text-ink">ملخص التكاليف</h2>
             <dl className="mt-4 space-y-3 text-sm">
               <div className="flex justify-between gap-3">
@@ -126,7 +126,7 @@ export default async function TransferDetailsPage({ params }: PageProps) {
                     ? "حالة التنازل"
                     : transferPageContent.detailLabels.premium}
                 </dt>
-                <dd className={`font-bold ${isNoPremium(listing) ? "text-green-700" : "text-amber-700"}`}>
+                <dd className={`font-bold ${isNoPremium(listing) ? "text-success" : "text-warning"}`}>
                   {isNoPremium(listing)
                     ? transferPageContent.detailLabels.noPremium
                     : formatPrice(premiumAmount)}
@@ -145,13 +145,13 @@ export default async function TransferDetailsPage({ params }: PageProps) {
             </dl>
             <a
               href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? ""}?text=${whatsappMessage}`}
-              className="mt-6 block rounded-xl bg-primary p-3 text-center font-bold text-white"
+              className="mt-6 block rounded-xl bg-primary p-3 text-center font-bold text-on-primary"
             >
               كلمنا على واتساب
             </a>
           </div>
         </div>
-        <p className="mt-8 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-7 text-amber-900">
+        <p className="mt-8 rounded-xl border border-border bg-primary-light p-4 text-sm leading-7 text-ink">
           {transferPageContent.sections.legalNotice}
         </p>
       </Section>

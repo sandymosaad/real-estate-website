@@ -1,4 +1,7 @@
 export const SITE_NAME = "بيتك أسيوط";
+export const THEME_STORAGE_KEY = "assiut-realestate-theme";
+export const THEME_MODES = ["light", "dark", "system"] as const;
+export type ThemeMode = (typeof THEME_MODES)[number];
 export const DEFAULT_LISTING_IMAGE = "/home.jpg";
 
 export const NAV_LINKS = [

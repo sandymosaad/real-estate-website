@@ -24,36 +24,36 @@ export default async function NewApartmentPage() {
       <h1 className="text-3xl font-bold">إضافة شقة</h1>
       <form
         action={createApartmentFromForm}
-        className="mt-6 grid gap-4 rounded-xl bg-white p-6 shadow-sm md:grid-cols-2"
+        className="mt-6 grid gap-4 rounded-xl bg-surface p-6 shadow-sm md:grid-cols-2"
       >
         <input
           name="title"
           required
           placeholder="عنوان الشقة"
-          className="rounded-xl border p-3"
+          className="rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
         />
         <input
           name="slugSource"
           required
           placeholder="مصدر الرابط بالإنجليزية أو العربية"
-          className="rounded-xl border p-3"
+          className="rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
         />
         <textarea
           name="description"
           required
           placeholder="الوصف"
-          className="min-h-28 rounded-xl border p-3 md:col-span-2"
+          className="min-h-28 rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary md:col-span-2"
         />
         <input
           name="address"
           required
           placeholder="العنوان"
-          className="rounded-xl border p-3"
+          className="rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
         />
         <select
           name="district"
           required
-          className="rounded-xl border p-3"
+          className="rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
         >
           <option value="">المركز</option>
           {ASSIUT_DISTRICTS.map((item) => (
@@ -66,7 +66,7 @@ export default async function NewApartmentPage() {
           min="0"
           required
           placeholder="السعر"
-          className="rounded-xl border p-3"
+          className="rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
         />
         <input
           name="areaSqm"
@@ -74,7 +74,7 @@ export default async function NewApartmentPage() {
           min="0"
           required
           placeholder="المساحة بالمتر"
-          className="rounded-xl border p-3"
+          className="rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
         />
         <input
           name="rooms"
@@ -82,7 +82,7 @@ export default async function NewApartmentPage() {
           min="0"
           required
           placeholder="عدد الغرف"
-          className="rounded-xl border p-3"
+          className="rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
         />
         <input
           name="bathrooms"
@@ -90,7 +90,7 @@ export default async function NewApartmentPage() {
           min="0"
           required
           placeholder="عدد الحمامات"
-          className="rounded-xl border p-3"
+          className="rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
         />
         <input
           name="floor"
@@ -98,26 +98,26 @@ export default async function NewApartmentPage() {
           min="0"
           required
           placeholder="الدور"
-          className="rounded-xl border p-3"
+          className="rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
         />
         <select
           name="finishing"
           required
-          className="rounded-xl border p-3"
+          className="rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
         >
           <option value="">التشطيب</option>
           {APARTMENT_FINISHINGS.map((item) => (
             <option key={item}>{item}</option>
           ))}
         </select>
-        <select name="status" required className="rounded-xl border p-3">
+        <select name="status" required className="rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary">
           <option value="">الحالة</option>
           {APARTMENT_STATUSES.map((item) => (
             <option key={item}>{item}</option>
           ))}
         </select>
         <ImageUploader />
-        <button className="rounded-xl bg-primary p-3 font-bold text-white md:col-span-2">
+        <button className="rounded-xl bg-primary p-3 font-bold text-on-primary md:col-span-2">
           حفظ الشقة
         </button>
       </form>

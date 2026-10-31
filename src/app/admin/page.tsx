@@ -32,7 +32,7 @@ export default async function AdminDashboardPage() {
           value={`${stats.transferListings.published} منشورة / ${stats.transferListings.unpublished} للمراجعة`}
         />
       </div>
-      <div className="mt-8 overflow-x-auto rounded-xl bg-white p-5 shadow-sm">
+      <div className="mt-8 overflow-x-auto rounded-xl bg-surface p-5 shadow-sm">
         <h2 className="text-xl font-bold">آخر الطلبات</h2>
         <table className="mt-4 w-full text-start text-sm">
           <thead><tr className="border-b text-start"><th className="p-3 text-start">الاسم</th><th className="p-3 text-start">الاهتمام</th><th className="p-3 text-start">الحالة</th></tr></thead>
@@ -44,5 +44,5 @@ export default async function AdminDashboardPage() {
 }
 
 function StatCard({ label, value }: { label: string; value: number | string }) {
-  return <div className="rounded-xl bg-white p-5 shadow-sm"><p className="text-sm text-slate-500">{label}</p><p className="mt-2 text-xl font-bold">{value}</p></div>;
+  return <div className="rounded-xl bg-surface p-5 shadow-sm"><p className="text-sm text-muted">{label}</p><p className="mt-2 text-xl font-bold">{value}</p></div>;
 }

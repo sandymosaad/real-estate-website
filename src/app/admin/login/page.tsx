@@ -20,16 +20,16 @@ export default async function AdminLoginPage({
 
   return (
     <main
-      className="flex min-h-screen items-center justify-center bg-slate-100 p-4"
+      className="flex min-h-screen items-center justify-center bg-background p-4"
       dir="rtl"
     >
       <form
         action={loginAdmin}
-        className="w-full max-w-md rounded-xl bg-white p-8 shadow"
+        className="w-full max-w-md rounded-xl bg-surface p-8 shadow"
       >
         <h1 className="text-2xl font-bold text-ink">دخول لوحة الإدارة</h1>
         {error && (
-          <p className="mt-4 rounded-lg bg-red-50 p-3 text-red-700">
+          <p className="mt-4 rounded-lg bg-primary-light p-3 text-error">
             {error}
           </p>
         )}
@@ -40,7 +40,7 @@ export default async function AdminLoginPage({
             type="email"
             required
             autoComplete="username"
-            className="mt-2 w-full rounded-xl border p-3"
+            className="mt-2 w-full rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
           />
         </label>
         <label className="mt-4 block text-sm font-semibold">
@@ -50,12 +50,12 @@ export default async function AdminLoginPage({
             type="password"
             required
             autoComplete="current-password"
-            className="mt-2 w-full rounded-xl border p-3"
+            className="mt-2 w-full rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
           />
         </label>
         <button
           type="submit"
-          className="mt-6 w-full rounded-xl bg-primary p-3 font-bold text-white"
+          className="mt-6 w-full rounded-xl bg-primary p-3 font-bold text-on-primary"
         >
           دخول
         </button>

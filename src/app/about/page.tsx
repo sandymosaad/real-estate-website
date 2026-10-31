@@ -110,7 +110,7 @@ export default function AboutPage() {
               key={member}
               className="rounded-xl border border-border bg-primary-light p-6 text-center"
             >
-              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-white text-sm text-muted">
+              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-surface text-sm text-muted">
                 صورة
               </div>
               <h2 className="mt-4 font-bold text-ink">{member}</h2>
@@ -135,15 +135,15 @@ export default function AboutPage() {
           ))}
         </div>
       </Section>
-      <section className="bg-primary py-14 text-center text-white">
+      <section className="bg-primary py-14 text-center text-on-primary">
         <h2 className="text-3xl font-bold">خلينا نبدأ من احتياجك</h2>
-        <p className="mx-auto mt-3 max-w-xl text-white/80">
+        <p className="mx-auto mt-3 max-w-xl text-on-primary/80">
           احكيلنا بتدور على إيه، وهنساعدك تشوف الصورة أوضح.
         </p>
         <Link href="/contact" className="mt-6 inline-flex">
           <Button
             variant="outline"
-            className="border-white text-white hover:bg-white/10"
+            className="border-white text-on-primary hover:bg-surface/10"
           >
             تواصل معانا
           </Button>

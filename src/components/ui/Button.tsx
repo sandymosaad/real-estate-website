@@ -10,7 +10,7 @@ type ButtonProps = (
 };
 
 const variants = {
-  primary: "bg-primary text-white hover:bg-dark",
+  primary: "bg-primary text-on-primary hover:bg-dark",
   outline: "border border-primary text-primary hover:bg-light",
   ghost: "text-ink hover:bg-light",
 };

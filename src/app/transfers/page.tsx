@@ -73,7 +73,7 @@ export default async function TransfersPage({ searchParams }: PageProps) {
         <div className="grid gap-4 md:grid-cols-2">
           <a
             href="#owner-form"
-            className="rounded-xl bg-primary p-6 font-bold text-white"
+            className="rounded-xl bg-primary p-6 font-bold text-on-primary"
           >
             {transferPageContent.audiences.seller.button}
           </a>
@@ -85,7 +85,7 @@ export default async function TransfersPage({ searchParams }: PageProps) {
           </Link>
         </div>
         <div className="mt-8 grid gap-5 md:grid-cols-2">
-          <div className="rounded-xl border border-border bg-white p-6">
+          <div className="rounded-xl border border-border bg-surface p-6">
             <h2 className="text-2xl font-bold text-ink">
               {transferPageContent.audiences.seller.title}
             </h2>
@@ -93,7 +93,7 @@ export default async function TransfersPage({ searchParams }: PageProps) {
               {transferPageContent.audiences.seller.description}
             </p>
           </div>
-          <div className="rounded-xl border border-border bg-white p-6">
+          <div className="rounded-xl border border-border bg-surface p-6">
             <h2 className="text-2xl font-bold text-ink">
               {transferPageContent.audiences.buyer.title}
             </h2>
@@ -102,12 +102,12 @@ export default async function TransfersPage({ searchParams }: PageProps) {
             </p>
           </div>
         </div>
-        <div className="mt-8 rounded-xl border border-border bg-slate-50 p-6">
+        <div className="mt-8 rounded-xl border border-border bg-primary-light p-6">
           <h2 className="text-xl font-bold text-ink">
             {transferPageContent.sections.moneyFlowTitle}
           </h2>
           <div className="mt-5 grid gap-4 md:grid-cols-3 md:items-center">
-            <div className="rounded-xl bg-white p-4 text-center font-bold text-primary">
+            <div className="rounded-xl bg-surface p-4 text-center font-bold text-primary">
               {transferPageContent.moneyFlow.buyer}
             </div>
             <div className="text-center text-sm text-muted">
@@ -119,10 +119,10 @@ export default async function TransfersPage({ searchParams }: PageProps) {
               </span>
             </div>
             <div className="grid gap-3">
-              <div className="rounded-xl bg-white p-4 text-center font-bold text-ink">
+              <div className="rounded-xl bg-surface p-4 text-center font-bold text-ink">
                 {transferPageContent.moneyFlow.seller}
               </div>
-              <div className="rounded-xl bg-white p-4 text-center font-bold text-ink">
+              <div className="rounded-xl bg-surface p-4 text-center font-bold text-ink">
                 الجهة البائعة
               </div>
             </div>
@@ -141,7 +141,7 @@ export default async function TransfersPage({ searchParams }: PageProps) {
             </div>
           ))}
         </div>
-        <div className="mt-8 rounded-xl border border-border bg-white p-6">
+        <div className="mt-8 rounded-xl border border-border bg-surface p-6">
           <h2 className="text-xl font-bold text-ink">
             {transferPageContent.sections.documentsTitle}
           </h2>
@@ -151,7 +151,7 @@ export default async function TransfersPage({ searchParams }: PageProps) {
             ))}
           </ul>
         </div>
-        <p className="mt-8 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-7 text-amber-900">
+        <p className="mt-8 rounded-xl border border-border bg-primary-light p-4 text-sm leading-7 text-ink">
           {transferPageContent.sections.legalNotice}
         </p>
       </Section>

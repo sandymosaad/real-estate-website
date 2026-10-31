@@ -32,7 +32,7 @@ export function ServicesCards() {
           {services.map(({ title, description, href, icon: Icon }) => (
             <article
               key={title}
-              className="flex min-h-64 flex-col rounded-xl border border-border bg-white p-6 shadow-sm"
+              className="flex min-h-64 flex-col rounded-xl border border-border bg-surface p-6 shadow-sm"
             >
               <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-primary-light text-primary">
                 <Icon size={25} aria-hidden="true" />

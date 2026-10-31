@@ -26,26 +26,26 @@ export default async function AdminTestimonialsPage() {
   return (
     <section>
       <h1 className="text-3xl font-bold">آراء العملاء</h1>
-      <form action={createTestimonialFromForm} className="mt-6 grid gap-4 rounded-xl bg-white p-5 shadow-sm md:grid-cols-2">
-        <input name="name" required placeholder="اسم العميل" className="rounded-xl border p-3" />
-        <select name="district" required className="rounded-xl border p-3">
+      <form action={createTestimonialFromForm} className="mt-6 grid gap-4 rounded-xl bg-surface p-5 shadow-sm md:grid-cols-2">
+        <input name="name" required placeholder="اسم العميل" className="rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary" />
+        <select name="district" required className="rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary">
           <option value="">اختار المركز</option>
           {ASSIUT_DISTRICTS.map((district) => <option key={district}>{district}</option>)}
         </select>
-        <textarea name="text" required maxLength={400} placeholder="رأي العميل" className="min-h-28 rounded-xl border p-3 md:col-span-2" />
+        <textarea name="text" required maxLength={400} placeholder="رأي العميل" className="min-h-28 rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary md:col-span-2" />
         <label className="flex items-center gap-2 text-sm"><input name="isPublished" type="checkbox" value="true" /> نشر الرأي فورًا</label>
-        <button type="submit" className="rounded-xl bg-primary p-3 font-bold text-white">إضافة رأي</button>
+        <button type="submit" className="rounded-xl bg-primary p-3 font-bold text-on-primary">إضافة رأي</button>
       </form>
       <div className="mt-6 grid gap-4">
         {testimonials.map((testimonial) => (
-          <article key={String(testimonial._id)} className="rounded-xl bg-white p-5 shadow-sm">
+          <article key={String(testimonial._id)} className="rounded-xl bg-surface p-5 shadow-sm">
             <div className="flex flex-wrap items-start justify-between gap-4">
-              <div><h2 className="font-bold">{testimonial.name}</h2><p className="text-sm text-slate-500">{testimonial.district}</p></div>
-              <span className={`rounded-full px-3 py-1 text-sm ${testimonial.isPublished ? "bg-green-100 text-green-700" : "bg-amber-100 text-amber-700"}`}>
+              <div><h2 className="font-bold">{testimonial.name}</h2><p className="text-sm text-muted">{testimonial.district}</p></div>
+              <span className={`rounded-full px-3 py-1 text-sm ${testimonial.isPublished ? "bg-primary-light text-success" : "bg-primary-light text-warning"}`}>
                 {testimonial.isPublished ? "منشور" : "مسودة"}
               </span>
             </div>
-            <p className="mt-4 leading-7 text-slate-600">{testimonial.text}</p>
+            <p className="mt-4 leading-7 text-muted">{testimonial.text}</p>
             <div className="mt-4 flex gap-2">
               <Link
                 href={`/admin/testimonials/${String(testimonial._id)}`}
@@ -57,12 +57,12 @@ export default async function AdminTestimonialsPage() {
                 <button className="rounded-lg border px-3 py-2 text-sm">{testimonial.isPublished ? "إلغاء النشر" : "نشر"}</button>
               </form>
               <form action={deleteTestimonial.bind(null, String(testimonial._id))}>
-                <button className="rounded-lg border border-red-200 px-3 py-2 text-sm text-red-700">حذف</button>
+                <button className="rounded-lg border border-error px-3 py-2 text-sm text-error">حذف</button>
               </form>
             </div>
           </article>
         ))}
-        {testimonials.length === 0 && <p className="rounded-xl bg-white p-8 text-center text-slate-500">لا توجد آراء عملاء حتى الآن.</p>}
+        {testimonials.length === 0 && <p className="rounded-xl bg-surface p-8 text-center text-muted">لا توجد آراء عملاء حتى الآن.</p>}
       </div>
     </section>
   );

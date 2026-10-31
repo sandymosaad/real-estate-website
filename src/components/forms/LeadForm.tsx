@@ -106,7 +106,7 @@ export function LeadForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-xl border border-border bg-white p-6 shadow-sm"
+      className="rounded-xl border border-border bg-surface p-6 shadow-sm"
       aria-live="polite"
     >
       {title && (
@@ -141,7 +141,7 @@ export function LeadForm({
               id="district"
               value={district}
               onChange={(event) => setDistrict(event.target.value)}
-              className="mt-2 w-full rounded-xl border border-border bg-white p-3 outline-none focus:border-primary"
+              className="mt-2 w-full rounded-xl border border-border bg-surface p-3 outline-none placeholder:text-muted focus:border-primary focus:ring-2 focus:ring-primary"
               aria-invalid={Boolean(form.errors.district)}
             >
               <option value="">اختار المركز</option>
@@ -150,7 +150,7 @@ export function LeadForm({
               ))}
             </select>
             {form.errors.district && (
-              <p className="mt-1 text-sm text-red-600">
+              <p className="mt-1 text-sm text-error">
                 {form.errors.district}
               </p>
             )}
@@ -169,7 +169,7 @@ export function LeadForm({
             onChange={(event) =>
               setInterestType(event.target.value as LeadInterestType)
             }
-            className="mt-2 w-full rounded-xl border border-border bg-white p-3 outline-none"
+            className="mt-2 w-full rounded-xl border border-border bg-surface p-3 outline-none focus:border-primary focus:ring-2 focus:ring-primary"
           >
             {LEAD_INTEREST_TYPES.map((item) => (
               <option key={item}>{item}</option>
@@ -186,10 +186,10 @@ export function LeadForm({
               value={message}
               onChange={(event) => setMessage(event.target.value)}
               aria-invalid={Boolean(form.errors.message)}
-              className="mt-2 min-h-28 w-full rounded-xl border border-border p-3 outline-none focus:border-primary"
+              className="mt-2 min-h-28 w-full rounded-xl border border-border bg-surface p-3 outline-none placeholder:text-muted focus:border-primary focus:ring-2 focus:ring-primary"
             />
             {form.errors.message && (
-              <p className="mt-1 text-sm text-red-600">
+              <p className="mt-1 text-sm text-error">
                 {form.errors.message}
               </p>
             )}
@@ -203,7 +203,7 @@ export function LeadForm({
                     id="apartmentDistrict"
                     value={apartmentDistrict}
                     onChange={(event) => setApartmentDistrict(event.target.value)}
-                    className="mt-2 w-full rounded-xl border border-border bg-white p-3 outline-none"
+                    className="mt-2 w-full rounded-xl border border-border bg-surface p-3 outline-none"
                     aria-invalid={Boolean(form.errors.apartmentDistrict)}
                   >
                     <option value="">اختار المركز</option>
@@ -212,7 +212,7 @@ export function LeadForm({
                     ))}
                   </select>
                   {form.errors.apartmentDistrict && (
-                    <p className="mt-1 text-sm text-red-600">
+                    <p className="mt-1 text-sm text-error">
                       {form.errors.apartmentDistrict}
                     </p>
                   )}
@@ -276,7 +276,7 @@ export function LeadForm({
         />
       </div>
       {form.status === "error" && (
-        <p className="mt-4 text-sm text-red-600">{form.message}</p>
+        <p className="mt-4 text-sm text-error">{form.message}</p>
       )}
       <Button
         type="submit"

@@ -40,22 +40,22 @@ export default async function AdminUnionProjectsPage({
     <section>
       <div className="flex items-center justify-between gap-4">
         <h1 className="text-3xl font-bold">مشاريع الاتحاد</h1>
-        <Link href="/admin/union-projects/new" className="rounded-xl bg-primary px-4 py-3 font-bold text-white">
+        <Link href="/admin/union-projects/new" className="rounded-xl bg-primary px-4 py-3 font-bold text-on-primary">
           إضافة مشروع
         </Link>
       </div>
-      <form className="mt-6 flex gap-3 rounded-xl bg-white p-4 shadow-sm">
+      <form className="mt-6 flex gap-3 rounded-xl bg-surface p-4 shadow-sm">
         <input
           name="search"
           defaultValue={search}
           placeholder="ابحث بعنوان المشروع"
-          className="flex-1 rounded-xl border p-3"
+          className="flex-1 rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
         />
-        <button className="rounded-xl bg-slate-900 px-5 font-bold text-white">
+        <button className="rounded-xl bg-surface px-5 font-bold text-on-primary">
           بحث
         </button>
       </form>
-      <div className="mt-6 overflow-x-auto rounded-xl bg-white shadow-sm">
+      <div className="mt-6 overflow-x-auto rounded-xl bg-surface shadow-sm">
         <table className="w-full min-w-[760px] text-sm">
           <thead>
             <tr className="border-b">
@@ -92,7 +92,7 @@ export default async function AdminUnionProjectsPage({
                   <form
                     action={deleteUnionProject.bind(null, String(project._id))}
                   >
-                    <button className="rounded-lg border border-red-200 px-3 py-2 text-red-700">
+                    <button className="rounded-lg border border-error px-3 py-2 text-error">
                       حذف
                     </button>
                   </form>
@@ -102,7 +102,7 @@ export default async function AdminUnionProjectsPage({
           </tbody>
         </table>
         {projects.length === 0 && (
-          <p className="p-8 text-center text-slate-500">
+          <p className="p-8 text-center text-muted">
             لا توجد مشاريع اتحاد مسجلة حتى الآن.
           </p>
         )}

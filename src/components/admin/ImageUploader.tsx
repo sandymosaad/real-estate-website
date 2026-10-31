@@ -103,7 +103,7 @@ export function ImageUploader({
         />
       </label>
       <input type="hidden" name={name} value={JSON.stringify(images)} />
-      {errorMessage && <p className="mt-2 text-sm text-red-600">{errorMessage}</p>}
+      {errorMessage && <p className="mt-2 text-sm text-error">{errorMessage}</p>}
       {isUploading && <p className="mt-2 text-sm text-muted">جاري رفع الصور...</p>}
       <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-5">
         {images.map((image, index) => (
@@ -118,7 +118,7 @@ export function ImageUploader({
             <div className="mt-2 flex justify-between gap-1">
               <button type="button" onClick={() => moveImage(index, -1)} disabled={index === 0} className="text-xs">قبل</button>
               <button type="button" onClick={() => moveImage(index, 1)} disabled={index === images.length - 1} className="text-xs">بعد</button>
-              <button type="button" onClick={() => setImages(images.filter((_, imageIndex) => imageIndex !== index))} className="text-xs text-red-600">حذف</button>
+              <button type="button" onClick={() => setImages(images.filter((_, imageIndex) => imageIndex !== index))} className="text-xs text-error">حذف</button>
             </div>
           </div>
         ))}

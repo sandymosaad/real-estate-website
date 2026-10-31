@@ -45,28 +45,28 @@ export default async function AdminTransfersPage({
     <section>
       <div className="flex items-center justify-between gap-4">
         <h1 className="text-3xl font-bold">شقق التنازل</h1>
-        <Link href="/admin/transfers/new" className="rounded-xl bg-primary px-4 py-3 font-bold text-white">
+        <Link href="/admin/transfers/new" className="rounded-xl bg-primary px-4 py-3 font-bold text-on-primary">
           إضافة إعلان
         </Link>
       </div>
-      <p className="mt-2 text-slate-600">
+      <p className="mt-2 text-muted">
         راجع الإعلانات قبل نشرها على الموقع العام.
       </p>
-      <form className="mt-6 flex gap-3 rounded-xl bg-white p-4 shadow-sm">
+      <form className="mt-6 flex gap-3 rounded-xl bg-surface p-4 shadow-sm">
         <input
           name="search"
           defaultValue={search}
           placeholder="ابحث بعنوان الإعلان"
-          className="flex-1 rounded-xl border p-3"
+          className="flex-1 rounded-xl border border-border bg-surface p-3 text-ink placeholder:text-muted outline-none focus:border-primary focus:ring-2 focus:ring-primary"
         />
         <button
           type="submit"
-          className="rounded-xl bg-slate-900 px-5 font-bold text-white"
+          className="rounded-xl bg-surface px-5 font-bold text-on-primary"
         >
           بحث
         </button>
       </form>
-      <div className="mt-6 overflow-x-auto rounded-xl bg-white shadow-sm">
+      <div className="mt-6 overflow-x-auto rounded-xl bg-surface shadow-sm">
         <table className="w-full min-w-[760px] text-sm">
           <thead>
             <tr className="border-b">
@@ -89,14 +89,14 @@ export default async function AdminTransfersPage({
                   <span
                     className={`rounded-full px-3 py-1 ${
                       listing.isPublished
-                        ? "bg-green-100 text-green-700"
-                        : "bg-amber-100 text-amber-700"
+                        ? "bg-primary-light text-success"
+                        : "bg-primary-light text-warning"
                     }`}
                   >
                     {listing.isPublished ? "منشور" : "للمراجعة"}
                   </span>
                   {listing.isDocumentsVerified && (
-                    <span className="ms-2 rounded-full bg-blue-100 px-3 py-1 text-blue-700">
+                    <span className="ms-2 rounded-full bg-primary-light px-3 py-1 text-primary">
                       مستندات متراجعة
                     </span>
                   )}
@@ -132,7 +132,7 @@ export default async function AdminTransfersPage({
                       String(listing._id),
                     )}
                   >
-                    <button className="rounded-lg border border-red-200 px-3 py-2 text-red-700">
+                    <button className="rounded-lg border border-error px-3 py-2 text-error">
                       حذف
                     </button>
                   </form>
@@ -142,7 +142,7 @@ export default async function AdminTransfersPage({
           </tbody>
         </table>
         {listings.length === 0 && (
-          <p className="p-8 text-center text-slate-500">
+          <p className="p-8 text-center text-muted">
             لا توجد شقق تنازل مسجلة حتى الآن.
           </p>
         )}

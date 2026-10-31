@@ -19,7 +19,7 @@ export function UnionExplanation() {
       <Section title="بيشتغل إزاي؟">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {steps.map((step, index) => <div key={step} className="flex items-center gap-3 rounded-xl border border-border p-4">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-on-primary">
               {index + 1}
             </span>
             <span className="font-semibold text-ink">

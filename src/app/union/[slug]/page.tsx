@@ -79,7 +79,7 @@ export default async function UnionProjectDetailsPage({ params }: PageProps) {
               {project.reservedSeats} من {project.totalSeats}
             </span>
           </div>
-          <span className="mt-3 block h-3 overflow-hidden rounded-full bg-white">
+          <span className="mt-3 block h-3 overflow-hidden rounded-full bg-surface">
             <span
               className="block h-full rounded-full bg-primary"
               style={{ width: `${progress}%` }}
