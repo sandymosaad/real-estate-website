@@ -4,7 +4,6 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { homeContent } from "@/content/home";
-import { SectionCTA } from "@/components/contact/SectionCTA";
 
 export function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
@@ -23,7 +22,6 @@ export function FAQ() {
           <div className="faq-answer-content">
             <p className="px-5 pb-5 leading-7 text-muted">{answer}</p>
           </div>
-          <SectionCTA context="أسئلة العقارات" />
         </div>
       </div>)}
     

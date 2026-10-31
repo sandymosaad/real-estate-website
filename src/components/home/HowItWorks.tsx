@@ -2,7 +2,6 @@ import { ArrowDown, ArrowLeft } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { RevealList } from "@/components/animation/RevealList";
 import { homeContent } from "@/content/home";
-import { SectionCTA } from "@/components/contact/SectionCTA";
 
 export function HowItWorks() {
   return (
@@ -34,7 +33,6 @@ export function HowItWorks() {
           </div>
         ))}
       </RevealList>
-      <SectionCTA context="خطوات شراء العقار" />
     </Section>
   );
 }

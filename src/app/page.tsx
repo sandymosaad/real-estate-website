@@ -24,6 +24,7 @@ export default async function Home() {
       <ServicesCards />
       <WhyUs />
       <LatestListings />
+      {/* Keep one mid-page strip; Hero, FinalCTA, and the mobile bar already provide contact actions. */}
       <SectionCTA context="اختيارات العقارات" />
       <HowItWorks />
       <Testimonials testimonials={testimonials} />
