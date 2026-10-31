@@ -6,6 +6,7 @@ import { formatPrice } from "@/lib/format";
 import { TransferListingModel } from "@/models/TransferListing";
 import {
   deleteTransferListing,
+  setTransferDocumentsVerified,
   toggleTransferListingPublish,
 } from "./actions";
 
@@ -94,6 +95,11 @@ export default async function AdminTransfersPage({
                   >
                     {listing.isPublished ? "منشور" : "للمراجعة"}
                   </span>
+                  {listing.isDocumentsVerified && (
+                    <span className="ms-2 rounded-full bg-blue-100 px-3 py-1 text-blue-700">
+                      مستندات متراجعة
+                    </span>
+                  )}
                 </td>
                 <td className="flex gap-2 p-4">
                   <form
@@ -105,6 +111,19 @@ export default async function AdminTransfersPage({
                   >
                     <button className="rounded-lg border px-3 py-2">
                       {listing.isPublished ? "إلغاء النشر" : "نشر"}
+                    </button>
+                  </form>
+                  <form
+                    action={setTransferDocumentsVerified.bind(
+                      null,
+                      String(listing._id),
+                      !listing.isDocumentsVerified,
+                    )}
+                  >
+                    <button className="rounded-lg border px-3 py-2">
+                      {listing.isDocumentsVerified
+                        ? "إلغاء مراجعة المستندات"
+                        : "تأكيد مراجعة المستندات"}
                     </button>
                   </form>
                   <form

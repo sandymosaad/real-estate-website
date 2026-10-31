@@ -42,6 +42,7 @@ export async function createTransferListingFromForm(
     slug,
     images,
     isPublished: false,
+    documentsVerifiedAt: input.isDocumentsVerified ? new Date() : undefined,
   });
   revalidatePath("/admin/transfers");
   revalidatePath("/transfers");

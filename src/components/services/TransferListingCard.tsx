@@ -5,6 +5,7 @@ import type { TransferListing } from "@/models/TransferListing";
 import { DEFAULT_LISTING_IMAGE } from "@/lib/constants";
 import { formatArea, formatPrice } from "@/lib/format";
 import { getListingPath } from "@/lib/slug";
+import { getPremiumAmount, isNoPremium } from "@/lib/transfer-listing";
 
 /** Presents a published installment transfer without exposing owner data. */
 export function TransferListingCard({
@@ -26,9 +27,21 @@ export function TransferListingCard({
       <div className="p-5">
         <div className="flex items-start justify-between gap-3">
           <p className="text-sm font-semibold text-primary">تنازل شقة بالتقسيط</p>
-          <span className="rounded-full bg-primary-light px-3 py-1 text-xs font-semibold text-primary">
-            {listing.listingStatus}
-          </span>
+          <div className="flex flex-wrap justify-end gap-2">
+            <span className="rounded-full bg-primary-light px-3 py-1 text-xs font-semibold text-primary">
+              {listing.listingStatus}
+            </span>
+            {isNoPremium(listing) && (
+              <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
+                بدون أوفر
+              </span>
+            )}
+            {listing.isDocumentsVerified && (
+              <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
+                مستندات متراجعة
+              </span>
+            )}
+          </div>
         </div>
         <h2 className="mt-3 text-xl font-bold text-ink">{listing.title}</h2>
         <p className="mt-3 flex items-center gap-1 text-sm text-muted">
@@ -43,8 +56,13 @@ export function TransferListingCard({
           <span>{listing.remainingInstallments} قسط متبقي</span>
         </div>
         <p className="mt-4 text-lg font-bold text-primary">
-          {formatPrice(listing.transferAmountRequested)} مبلغ التنازل
+          {formatPrice(listing.transferAmountRequested)} المطلوب للتنازل
         </p>
+        {!isNoPremium(listing) && (
+          <p className="mt-1 text-sm text-amber-700">
+            أوفر: {formatPrice(getPremiumAmount(listing))}
+          </p>
+        )}
         <p className="mt-1 text-sm text-muted">
           {formatPrice(listing.monthlyInstallment)} شهريًا
         </p>

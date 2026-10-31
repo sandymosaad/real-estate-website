@@ -19,6 +19,7 @@ const transferListingSchema = new Schema(
     sellerCompanyName: { type: String, required: true },
     originalPrice: { type: Number, required: true, min: 0 },
     amountPaid: { type: Number, required: true, min: 0 },
+    estimatedMarketPrice: { type: Number, min: 0 },
     transferAmountRequested: { type: Number, required: true, min: 0 },
     monthlyInstallment: { type: Number, required: true, min: 0 },
     remainingInstallments: { type: Number, required: true, min: 0, integer: true },
@@ -32,6 +33,8 @@ const transferListingSchema = new Schema(
       index: true,
     },
     isPublished: { type: Boolean, default: false },
+    isDocumentsVerified: { type: Boolean, default: false },
+    documentsVerifiedAt: { type: Date },
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } },
 );

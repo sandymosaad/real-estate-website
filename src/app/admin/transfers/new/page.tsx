@@ -16,7 +16,9 @@ export default async function NewTransferListingPage() {
   return (
     <section>
       <h1 className="text-3xl font-bold">إضافة شقة تنازل</h1>
-      <p className="mt-2 text-amber-700">الإعلان سيظل غير منشور حتى تتم مراجعته.</p>
+      <p className="mt-2 text-amber-700">
+        الإعلان سيظل غير منشور حتى تتم مراجعته.
+      </p>
       <form action={createTransferListingFromForm} className="mt-6 grid gap-4 rounded-xl bg-white p-6 shadow-sm md:grid-cols-2">
         <input name="title" required placeholder="عنوان الإعلان" className="rounded-xl border p-3" />
         <input name="slugSource" required placeholder="مصدر الرابط" className="rounded-xl border p-3" />
@@ -31,11 +33,16 @@ export default async function NewTransferListingPage() {
         <input name="sellerCompanyName" required placeholder="الجهة البائعة" className="rounded-xl border p-3" />
         <input name="originalPrice" type="number" min="0" required placeholder="السعر الأصلي" className="rounded-xl border p-3" />
         <input name="amountPaid" type="number" min="0" required placeholder="المبلغ المدفوع" className="rounded-xl border p-3" />
+        <input name="estimatedMarketPrice" type="number" min="0" placeholder="تقدير سعر السوق (اختياري)" className="rounded-xl border p-3" />
         <input name="transferAmountRequested" type="number" min="0" required placeholder="مبلغ التنازل" className="rounded-xl border p-3" />
         <input name="monthlyInstallment" type="number" min="0" required placeholder="القسط الشهري" className="rounded-xl border p-3" />
         <input name="remainingInstallments" type="number" min="0" required placeholder="الأقساط المتبقية" className="rounded-xl border p-3" />
         <select name="listingStatus" required className="rounded-xl border p-3"><option value="">حالة الإعلان</option>{TRANSFER_LISTING_STATUSES.map((item) => <option key={item}>{item}</option>)}</select>
         <ImageUploader />
+        <label className="flex items-center gap-2 text-sm">
+          <input name="isDocumentsVerified" type="checkbox" value="true" />
+          مستندات متراجعة
+        </label>
         <button className="rounded-xl bg-primary p-3 font-bold text-white md:col-span-2">حفظ الإعلان للمراجعة</button>
       </form>
     </section>

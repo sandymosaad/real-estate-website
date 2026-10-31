@@ -7,16 +7,17 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import {
   ASSIUT_DISTRICTS,
-  TRANSFER_LEGAL_NOTICE,
   TRANSFER_LISTING_STATUSES,
   type District,
   type TransferListingStatus,
 } from "@/lib/constants";
 import { getTransferListings } from "@/lib/data/transfer-listings";
+import { transferPageContent } from "@/content/transfers";
 
 export const metadata: Metadata = {
-  title: "تنازل شقق بالتقسيط",
-  description: "شقق متاحة للتنازل واستكمال الأقساط في مراكز أسيوط.",
+  title: "بيع وحدتك بالتقسيط بدون أوفر",
+  description:
+    "اتنازل عن وحدتك لمشتري جديد يكمّل الأقساط، أو دور على وحدة بسعر التعاقد القديم.",
 };
 
 type PageProps = {
@@ -66,31 +67,69 @@ export default async function TransfersPage({ searchParams }: PageProps) {
   return (
     <>
       <Section
-        title="تنازل شقق بالتقسيط"
-        subtitle="لو مش قادر تكمل الأقساط، نساعدك تعرض الوحدة للتواصل مع مهتمين."
+        title={transferPageContent.hero.title}
+        subtitle={transferPageContent.hero.subtitle}
       >
         <div className="grid gap-4 md:grid-cols-2">
           <a
             href="#owner-form"
             className="rounded-xl bg-primary p-6 font-bold text-white"
           >
-            عندي شقة عايز اتنازل عنها
+            {transferPageContent.audiences.seller.button}
           </a>
           <Link
             href="#listings"
             className="rounded-xl bg-primary-light p-6 font-bold text-primary"
           >
-            عايز أكمل أقساط شقة
+            {transferPageContent.audiences.buyer.button}
           </Link>
         </div>
+        <div className="mt-8 grid gap-5 md:grid-cols-2">
+          <div className="rounded-xl border border-border bg-white p-6">
+            <h2 className="text-2xl font-bold text-ink">
+              {transferPageContent.audiences.seller.title}
+            </h2>
+            <p className="mt-3 leading-7 text-muted">
+              {transferPageContent.audiences.seller.description}
+            </p>
+          </div>
+          <div className="rounded-xl border border-border bg-white p-6">
+            <h2 className="text-2xl font-bold text-ink">
+              {transferPageContent.audiences.buyer.title}
+            </h2>
+            <p className="mt-3 leading-7 text-muted">
+              {transferPageContent.audiences.buyer.description}
+            </p>
+          </div>
+        </div>
+        <div className="mt-8 rounded-xl border border-border bg-slate-50 p-6">
+          <h2 className="text-xl font-bold text-ink">
+            {transferPageContent.sections.moneyFlowTitle}
+          </h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-3 md:items-center">
+            <div className="rounded-xl bg-white p-4 text-center font-bold text-primary">
+              {transferPageContent.moneyFlow.buyer}
+            </div>
+            <div className="text-center text-sm text-muted">
+              <span className="block">
+                ← {transferPageContent.moneyFlow.sellerPayment}
+              </span>
+              <span className="mt-2 block">
+                → {transferPageContent.moneyFlow.companyPayment}
+              </span>
+            </div>
+            <div className="grid gap-3">
+              <div className="rounded-xl bg-white p-4 text-center font-bold text-ink">
+                {transferPageContent.moneyFlow.seller}
+              </div>
+              <div className="rounded-xl bg-white p-4 text-center font-bold text-ink">
+                الجهة البائعة
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="mt-8 grid gap-5 md:grid-cols-5">
-          {[
-            "ابعت بياناتك",
-            "نراجع المعلومات",
-            "ننشر الإعلان",
-            "تتواصل مع المهتم",
-            "تستكمل الإجراءات",
-          ].map((step, index) => (
+          {transferPageContent.steps.map((step, index) => (
             <div
               key={step}
               className="rounded-xl border border-border p-4 text-center"
@@ -102,15 +141,25 @@ export default async function TransfersPage({ searchParams }: PageProps) {
             </div>
           ))}
         </div>
+        <div className="mt-8 rounded-xl border border-border bg-white p-6">
+          <h2 className="text-xl font-bold text-ink">
+            {transferPageContent.sections.documentsTitle}
+          </h2>
+          <ul className="mt-4 grid gap-2 text-muted sm:grid-cols-2">
+            {transferPageContent.requiredDocuments.map((document) => (
+              <li key={document}>• {document}</li>
+            ))}
+          </ul>
+        </div>
         <p className="mt-8 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-7 text-amber-900">
-          {TRANSFER_LEGAL_NOTICE}
+          {transferPageContent.sections.legalNotice}
         </p>
       </Section>
-      <Section title="الشقق المتاحة" id="listings">
+      <Section title={transferPageContent.sections.listingsTitle} id="listings">
         <TransferFilters />
         {listings.length === 0 ? (
           <p className="mt-8 rounded-xl border border-border p-8 text-center text-muted">
-            مفيش تنازلات مطابقة حاليًا، جرّب تغيّر الفلاتر أو كلمنا.
+            {transferPageContent.sections.emptyListings}
           </p>
         ) : (
           <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -130,7 +179,7 @@ export default async function TransfersPage({ searchParams }: PageProps) {
         <Container>
           <div className="mx-auto max-w-3xl">
             <LeadForm
-              title="عايز اتنازل عن شقتي"
+              title={transferPageContent.sections.formTitle}
               defaultInterestType="تنازل عن شقة"
               showTransferFields
               showDistrictField={false}

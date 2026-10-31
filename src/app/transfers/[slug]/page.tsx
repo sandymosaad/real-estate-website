@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { transferPageContent } from "@/content/transfers";
 import { LeadForm } from "@/components/forms/LeadForm";
 import { TransferListingCard } from "@/components/services/TransferListingCard";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { TRANSFER_LEGAL_NOTICE } from "@/lib/constants";
 import {
   getSimilarTransferListings,
   getTransferListingBySlug,
 } from "@/lib/data/transfer-listings";
 import { formatArea, formatPrice } from "@/lib/format";
 import { decodeRouteSlug } from "@/lib/slug";
+import { getPremiumAmount, isNoPremium } from "@/lib/transfer-listing";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -24,7 +25,11 @@ export async function generateMetadata({
   const listing = await getTransferListingBySlug(decodeRouteSlug(slug));
 
   return listing
-    ? { title: listing.title, description: listing.description }
+    ? {
+        title: `${listing.title} - تنازل بدون أوفر`,
+        description:
+          "اعرف سعر التعاقد والمدفوع والمطلوب للتنازل والأقساط المتبقية قبل التواصل.",
+      }
     : { title: "التنازل غير موجود" };
 }
 
@@ -41,6 +46,7 @@ export default async function TransferDetailsPage({ params }: PageProps) {
   );
   const remainingBalance =
     listing.monthlyInstallment * listing.remainingInstallments;
+  const premiumAmount = getPremiumAmount(listing);
 
   return (
     <>
@@ -48,6 +54,18 @@ export default async function TransferDetailsPage({ params }: PageProps) {
         title={listing.title}
         subtitle={`${listing.district} - ${formatArea(listing.areaSqm)}`}
       >
+        <div className="mb-6 flex flex-wrap gap-2">
+          {isNoPremium(listing) && (
+            <span className="rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700">
+              بدون أوفر
+            </span>
+          )}
+          {listing.isDocumentsVerified && (
+            <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-700">
+              مستندات متراجعة
+            </span>
+          )}
+        </div>
         <div className="grid gap-8 lg:grid-cols-3">
           <div className="space-y-5 lg:col-span-2">
             <div className="flex h-64 items-center justify-center rounded-xl bg-primary-light font-semibold text-primary">
@@ -75,35 +93,53 @@ export default async function TransferDetailsPage({ params }: PageProps) {
             <h2 className="text-xl font-bold text-ink">ملخص التكاليف</h2>
             <dl className="mt-4 space-y-3 text-sm">
               <div className="flex justify-between gap-3">
-                <dt>السعر الأصلي</dt>
+                <dt>{transferPageContent.detailLabels.contractPrice}</dt>
                 <dd className="font-bold">{formatPrice(listing.originalPrice)}</dd>
               </div>
               <div className="flex justify-between gap-3">
-                <dt>المدفوع</dt>
+                <dt>{transferPageContent.detailLabels.amountPaid}</dt>
                 <dd className="font-bold">{formatPrice(listing.amountPaid)}</dd>
               </div>
               <div className="flex justify-between gap-3">
-                <dt>مبلغ التنازل</dt>
+                <dt>{transferPageContent.detailLabels.requestedAmount}</dt>
                 <dd className="font-bold text-primary">
                   {formatPrice(listing.transferAmountRequested)}
                 </dd>
               </div>
               <div className="flex justify-between gap-3">
-                <dt>القسط الشهري</dt>
+                <dt>{transferPageContent.detailLabels.monthlyInstallment}</dt>
                 <dd className="font-bold">
                   {formatPrice(listing.monthlyInstallment)}
                 </dd>
               </div>
               <div className="flex justify-between gap-3">
-                <dt>الأقساط المتبقية</dt>
+                <dt>{transferPageContent.detailLabels.remainingInstallments}</dt>
                 <dd className="font-bold">{listing.remainingInstallments}</dd>
               </div>
               <div className="flex justify-between gap-3">
-                <dt>الرصيد المتبقي</dt>
+                <dt>{transferPageContent.detailLabels.remainingBalance}</dt>
                 <dd className="font-bold">{formatPrice(remainingBalance)}</dd>
               </div>
               <div className="flex justify-between gap-3">
-                <dt>الجهة البائعة</dt>
+                <dt>
+                  {isNoPremium(listing)
+                    ? "حالة التنازل"
+                    : transferPageContent.detailLabels.premium}
+                </dt>
+                <dd className={`font-bold ${isNoPremium(listing) ? "text-green-700" : "text-amber-700"}`}>
+                  {isNoPremium(listing)
+                    ? transferPageContent.detailLabels.noPremium
+                    : formatPrice(premiumAmount)}
+                </dd>
+              </div>
+              {listing.estimatedMarketPrice != null && (
+                <div className="flex justify-between gap-3">
+                  <dt>{transferPageContent.detailLabels.marketEstimate}</dt>
+                  <dd className="font-bold">{formatPrice(listing.estimatedMarketPrice)}</dd>
+                </div>
+              )}
+              <div className="flex justify-between gap-3">
+                <dt>{transferPageContent.detailLabels.sellerCompany}</dt>
                 <dd className="font-bold">{listing.sellerCompanyName}</dd>
               </div>
             </dl>
@@ -116,14 +152,14 @@ export default async function TransferDetailsPage({ params }: PageProps) {
           </div>
         </div>
         <p className="mt-8 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-7 text-amber-900">
-          {TRANSFER_LEGAL_NOTICE}
+          {transferPageContent.sections.legalNotice}
         </p>
       </Section>
       <section className="bg-primary-light py-12">
         <Container>
           <div className="mx-auto max-w-2xl">
             <LeadForm
-              title="عايز أكمل أقساط الشقة دي"
+              title={transferPageContent.sections.detailFormTitle}
               defaultInterestType="استلام تنازل"
               relatedItemType="transferListing"
               relatedItemSlug={listing.slug}
@@ -132,7 +168,7 @@ export default async function TransferDetailsPage({ params }: PageProps) {
         </Container>
       </section>
       {similarListings.length > 0 && (
-        <Section title="تنازلات مشابهة">
+        <Section title={transferPageContent.sections.similarTitle}>
           <div className="grid gap-6 md:grid-cols-3">
             {similarListings.map((item) => (
               <TransferListingCard key={item.slug} listing={item} />

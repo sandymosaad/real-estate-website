@@ -28,3 +28,21 @@ export async function deleteTransferListing(listingId: string): Promise<void> {
   revalidatePath("/admin/transfers");
   revalidatePath("/transfers");
 }
+
+/** Marks transfer documents as reviewed or clears that admin-only status. */
+export async function setTransferDocumentsVerified(
+  listingId: string,
+  isDocumentsVerified: boolean,
+): Promise<void> {
+  await requireAdmin();
+  await connectToDatabase();
+  await TransferListingModel.updateOne(
+    { _id: listingId },
+    {
+      isDocumentsVerified,
+      documentsVerifiedAt: isDocumentsVerified ? new Date() : null,
+    },
+  );
+  revalidatePath("/admin/transfers");
+  revalidatePath("/transfers");
+}

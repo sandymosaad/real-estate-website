@@ -19,7 +19,7 @@ export function ServicesCards() {
     },
     {
       title: "تنازل شقق بالتقسيط",
-      description: "اعرض شقتك للتنازل أو دور على وحدة تكمل أقساطها.",
+      description: "بيع وحدتك بدون أوفر أو دور على وحدة تكمل أقساطها بسعر التعاقد القديم.",
       href: "/transfers",
       icon: HandCoins,
     },

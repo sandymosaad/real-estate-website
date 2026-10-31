@@ -54,11 +54,13 @@ export const transferListingAdminSchema = z.object({
   sellerCompanyName: requiredText,
   originalPrice: positiveNumber,
   amountPaid: positiveNumber,
+  estimatedMarketPrice: positiveNumber.optional(),
   transferAmountRequested: positiveNumber,
   monthlyInstallment: positiveNumber,
   remainingInstallments: z.coerce.number().int().min(0),
   listingStatus: z.enum(TRANSFER_LISTING_STATUSES),
   images: z.string().optional().default("[]"),
+  isDocumentsVerified: z.coerce.boolean().optional().default(false),
 });
 
 export type ApartmentAdminInput = z.infer<typeof apartmentAdminSchema>;
